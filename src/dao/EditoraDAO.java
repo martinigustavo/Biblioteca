@@ -214,7 +214,7 @@ public class EditoraDAO implements IDAOT<Editora> {
         column.setMinWidth(50);
     }
 
-    public boolean editoraExiste(String nome) {
+    public boolean editoraExiste(String nome, int idEditora) {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
@@ -226,6 +226,10 @@ public class EditoraDAO implements IDAOT<Editora> {
             ResultSet retorno = st.executeQuery(sql);
 
             if (retorno.next()) {
+                if (idEditora != 0 && idEditora == retorno.getInt("cod_editora")) {
+                    return false;
+                }
+                
                 if (retorno.getString("situacao").equals("inativo")) {
                     atualizar(new Editora(retorno.getInt("cod_editora"),
                             retorno.getString("nome"),

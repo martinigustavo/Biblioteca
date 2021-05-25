@@ -246,13 +246,13 @@ where e.cod_emprestimo = $P{pCodEmprestimo}]]>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="50" width="100" height="16" uuid="b742a593-6ccf-4868-9453-7bf96c54d782"/>
-				<text><![CDATA[Limite de renovações:]]></text>
+				<text><![CDATA[Qtde de renovações:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="100" y="50" width="100" height="16" uuid="481d590b-1800-488b-8f30-d245383b1b81">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b796a28-b84d-4b40-b143-b7b174a2514c"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{limite}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{qtde_renovacoes}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="66" width="100" height="16" uuid="e43d75da-a94a-4cb9-96ca-a7ba54d53bdc"/>

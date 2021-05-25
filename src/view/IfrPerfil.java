@@ -16,6 +16,8 @@ import java.awt.Color;
  */
 public class IfrPerfil extends javax.swing.JInternalFrame {
 
+    PerfilDAO perfilDAO = new PerfilDAO();
+    Perfil perfil;
     int id = 0;
 
     /**
@@ -46,14 +48,14 @@ public class IfrPerfil extends javax.swing.JInternalFrame {
         lblQtdeRenovacoes = new javax.swing.JLabel();
         lblSituacao = new javax.swing.JLabel();
         cbxSituacao = new javax.swing.JComboBox<>();
-        cbxPrazo = new javax.swing.JComboBox<>();
-        cbxLimite = new javax.swing.JComboBox<>();
-        cbxQtdeRenovacoes = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        ftfPrazo = new javax.swing.JFormattedTextField();
+        ftfLimite = new javax.swing.JFormattedTextField();
+        ftfQtdeRenovacoes = new javax.swing.JFormattedTextField();
         pblConsulta = new javax.swing.JPanel();
         lblCriterio = new javax.swing.JLabel();
         txfBusca = new javax.swing.JTextField();
@@ -90,12 +92,6 @@ public class IfrPerfil extends javax.swing.JInternalFrame {
 
         cbxSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Inativo" }));
 
-        cbxPrazo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "7", "14", "21" }));
-
-        cbxLimite.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "5", "10", "15" }));
-
-        cbxQtdeRenovacoes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1", "3", "5" }));
-
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("*");
@@ -114,6 +110,12 @@ public class IfrPerfil extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("*");
 
+        ftfPrazo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        ftfLimite.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        ftfQtdeRenovacoes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
         javax.swing.GroupLayout pnlCadastroLayout = new javax.swing.GroupLayout(pnlCadastro);
         pnlCadastro.setLayout(pnlCadastroLayout);
         pnlCadastroLayout.setHorizontalGroup(
@@ -130,13 +132,17 @@ public class IfrPerfil extends javax.swing.JInternalFrame {
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCadastroLayout.createSequentialGroup()
                         .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cbxPrazo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 250, Short.MAX_VALUE)
-                                .addComponent(cbxLimite, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbxQtdeRenovacoes, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(cbxSituacao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(pnlCadastroLayout.createSequentialGroup()
+                                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbxSituacao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
+                                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ftfLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ftfPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ftfQtdeRenovacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6)))
                         .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
@@ -158,18 +164,18 @@ public class IfrPerfil extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrazo)
-                    .addComponent(cbxPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(ftfPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLimite)
-                    .addComponent(cbxLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(ftfLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblQtdeRenovacoes)
-                    .addComponent(cbxQtdeRenovacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(ftfQtdeRenovacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSituacao)
@@ -306,10 +312,10 @@ public class IfrPerfil extends javax.swing.JInternalFrame {
 
     private void limparCadastro() {
         txfPerfil.setText("");
-        cbxPrazo.setSelectedItem(cbxPrazo.getItemAt(0));
-        cbxLimite.setSelectedItem(cbxLimite.getItemAt(0));
-        cbxQtdeRenovacoes.setSelectedItem(cbxQtdeRenovacoes.getItemAt(0));
-        cbxSituacao.setSelectedItem(cbxSituacao.getItemAt(0));
+        ftfLimite.setText("");
+        ftfPrazo.setText("");
+        ftfQtdeRenovacoes.setText("");
+        cbxSituacao.setSelectedIndex(0);
         txfPerfil.requestFocus();
         id = 0;
         tbpPerfil.setSelectedIndex(0);
@@ -317,17 +323,12 @@ public class IfrPerfil extends javax.swing.JInternalFrame {
     }
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        PerfilDAO perfilDAO = new PerfilDAO();
-        Perfil perfil = new Perfil();
-
+        perfil = new Perfil();
         perfil.setId(id);
         String nome = txfPerfil.getText().trim();
-        int prazo = cbxPrazo.getSelectedIndex() != 0
-                ? Integer.parseInt(cbxPrazo.getSelectedItem().toString()) : 0;
-        int limite = cbxLimite.getSelectedIndex() != 0
-                ? Integer.parseInt(cbxLimite.getSelectedItem().toString()) : 0;
-        int qtde_renovacoes = cbxQtdeRenovacoes.getSelectedIndex() != 0
-                ? Integer.parseInt(cbxQtdeRenovacoes.getSelectedItem().toString()) : 0;
+        int prazo = ftfPrazo.getText().isEmpty() ? 0 : Integer.parseInt(ftfPrazo.getText());
+        int limite = ftfLimite.getText().isEmpty() ? 0 : Integer.parseInt(ftfLimite.getText());
+        int qtde_renovacoes = ftfQtdeRenovacoes.getText().isEmpty() ? 0 : Integer.parseInt(ftfQtdeRenovacoes.getText());
         String situacao = cbxSituacao.getSelectedItem().toString().toLowerCase();
 
         String retorno = null;
@@ -340,16 +341,25 @@ public class IfrPerfil extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (perfilDAO.perfilExiste(nome)) {
+        if (perfilDAO.perfilExiste(nome, id)) {
             txfPerfil.setForeground(Color.red);
             JOptionPane.showMessageDialog(null, "O perfil informado já está cadastrado no sistema! Escolha outro nome!");
             new PerfilDAO().popularTabela(tblPerfil, "");
             return;
         }
 
-        if (cbxLimite.getSelectedIndex() == 0 || cbxPrazo.getSelectedIndex() == 0
-                || cbxQtdeRenovacoes.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Selecione o(s) campo(s) obrigatório(s)!");
+        if (prazo == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o prazo para devolução de empréstimos!");
+            return;
+        }
+        
+        if (limite == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o prazo para devolução de empréstimos!");
+            return;
+        }
+        
+        if (qtde_renovacoes == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o prazo para devolução de empréstimos!");
             return;
         }
 
@@ -391,29 +401,11 @@ public class IfrPerfil extends javax.swing.JInternalFrame {
 
             txfPerfil.setText(perfil.getPerfil());
 
-            if (perfil.getPrazo() == 7) {
-                cbxPrazo.setSelectedIndex(0);
-            } else if (perfil.getPrazo() == 14) {
-                cbxPrazo.setSelectedIndex(1);
-            } else if (perfil.getPrazo() == 21) {
-                cbxPrazo.setSelectedIndex(2);
-            }
+            ftfLimite.setText(perfil.getLimite() + "");
 
-            if (perfil.getLimite() == 5) {
-                cbxLimite.setSelectedIndex(0);
-            } else if (perfil.getLimite() == 10) {
-                cbxLimite.setSelectedIndex(1);
-            } else if (perfil.getLimite() == 15) {
-                cbxLimite.setSelectedIndex(2);
-            }
-
-            if (perfil.getQtde_renovacoes() == 1) {
-                cbxQtdeRenovacoes.setSelectedIndex(0);
-            } else if (perfil.getQtde_renovacoes() == 3) {
-                cbxQtdeRenovacoes.setSelectedIndex(1);
-            } else if (perfil.getQtde_renovacoes() == 5) {
-                cbxQtdeRenovacoes.setSelectedIndex(2);
-            }
+            ftfPrazo.setText(perfil.getPrazo() + "");
+            
+            ftfQtdeRenovacoes.setText(perfil.getQtde_renovacoes() + "");
 
             if (perfil.getSituacao().equals("ativo")) {
                 cbxSituacao.setSelectedIndex(0);
@@ -492,10 +484,10 @@ public class IfrPerfil extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox<String> cbxLimite;
-    private javax.swing.JComboBox<String> cbxPrazo;
-    private javax.swing.JComboBox<String> cbxQtdeRenovacoes;
     private javax.swing.JComboBox<String> cbxSituacao;
+    private javax.swing.JFormattedTextField ftfLimite;
+    private javax.swing.JFormattedTextField ftfPrazo;
+    private javax.swing.JFormattedTextField ftfQtdeRenovacoes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

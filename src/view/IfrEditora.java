@@ -273,7 +273,7 @@ public class IfrEditora extends javax.swing.JInternalFrame {
         }
         
         // VALIDAÇÃO DE EDITORA JÁ CADASTRADA
-        if (editoraDAO.editoraExiste(nome)) {
+        if (editoraDAO.editoraExiste(nome, id)) {
             JOptionPane.showMessageDialog(null, "Esta editora já está cadastrada no sistema!");
             new EditoraDAO().popularTabela(tblEditora, "");
             return;
@@ -312,6 +312,12 @@ public class IfrEditora extends javax.swing.JInternalFrame {
             tbpEditora.setSelectedIndex(0);
 
             txfNome.setText(editora.getNome());
+            
+            if (editora.getSituacao().equals("ativo")) {
+                cbxSituacao.setSelectedIndex(0);
+            } else if (editora.getSituacao().equals("inativo")) {
+                cbxSituacao.setSelectedIndex(1);
+            }
 
             txfNome.requestFocus();
         } catch (Exception e) {

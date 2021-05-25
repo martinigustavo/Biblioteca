@@ -53,7 +53,7 @@ public class GeneroDAO implements IDAOT<Genero> {
             String genero = gen.getGenero();
 
             String sql = "UPDATE genero "
-                    + "SET genero = '" + genero + "', "
+                    + "SET genero = '" + genero + "' "
                     + "where cod_genero = " + id;
 
             System.out.println("SQL: " + sql);
@@ -86,7 +86,7 @@ public class GeneroDAO implements IDAOT<Genero> {
         }
     }
 
-    public boolean generoExistente(String genero) {
+    public boolean generoExistente(String genero, int idGenero) {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
@@ -98,6 +98,9 @@ public class GeneroDAO implements IDAOT<Genero> {
             ResultSet retorno = st.executeQuery(sql);
 
             if (retorno.next()) {
+                if (idGenero != 0 && idGenero == retorno.getInt("cod_genero")) {
+                    return false;
+                }
                 return true;
             }
 

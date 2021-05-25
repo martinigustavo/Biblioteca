@@ -268,15 +268,15 @@ public class IfrGenero extends javax.swing.JInternalFrame {
         }
         
         // valida a existencia de registro
-        if (generoDAO.generoExistente(genero)) {
+        if (generoDAO.generoExistente(genero, id)) {
             txfGenero.setForeground(Color.red);
             JOptionPane.showMessageDialog(null, "Este gênero já existe!");
             txfGenero.requestFocus();
             return;
         }
 
-        gnr.setGenero(genero);
-
+        gnr.setGenero(genero);        
+        
         if (gnr.getId() == 0) {
             retorno = generoDAO.salvar(gnr);
         } else {

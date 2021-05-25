@@ -86,7 +86,6 @@ public class FrmMain extends javax.swing.JFrame {
         mniRelatorioLivrosCadastrados = new javax.swing.JMenuItem();
         mniRelatorioUsuariosCadastrados = new javax.swing.JMenuItem();
         mniRelatorioLivros = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1621, 1000));
@@ -247,9 +246,6 @@ public class FrmMain extends javax.swing.JFrame {
         });
         mnuRelatorios.add(mniRelatorioLivros);
 
-        jMenuItem5.setText("Idades dos usuários");
-        mnuRelatorios.add(jMenuItem5);
-
         mnbMain.add(mnuRelatorios);
 
         setJMenuBar(mnbMain);
@@ -400,7 +396,6 @@ public class FrmMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dkpMain;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JLabel lblFuncionario;
     private javax.swing.JMenuBar mnbMain;
     private javax.swing.JMenuItem mniAutor;

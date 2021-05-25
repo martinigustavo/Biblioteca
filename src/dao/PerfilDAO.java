@@ -103,7 +103,7 @@ public class PerfilDAO implements IDAOT<Perfil> {
         }
     }
     
-    public boolean perfilExiste(String perfil) {
+    public boolean perfilExiste(String perfil, int idPerfil) {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
@@ -115,6 +115,11 @@ public class PerfilDAO implements IDAOT<Perfil> {
             ResultSet retorno = st.executeQuery(sql);
 
             if (retorno.next()) {
+                
+                if (idPerfil != 0 && retorno.getInt("cod_perfil") == idPerfil) {
+                    return false;
+                }
+                
                 if (retorno.getString("situacao").equals("inativo")) {
                     atualizar(new Perfil(retorno.getInt("cod_perfil"),
                             retorno.getString("perfil"),
@@ -123,6 +128,8 @@ public class PerfilDAO implements IDAOT<Perfil> {
                             retorno.getInt("qtde_renovacoes"),
                             "ativo"));
                 }
+                
+                
                 return true;
             }
 
