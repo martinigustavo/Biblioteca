@@ -19,15 +19,37 @@ import utils.ConexaoBD;
  *
  * @author Gustavo Martini
  */
-public class ReportListaDeLivros {
+public class ReportsGenerator {
 
-    public void gerarRelatorio() {
+    public void gerarRelatorioSimples(String path) {
         try {
             // Compila o relatorio
-            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/report_livros_landscape.jrxml"));
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream(path));
 
             // Mapeia campos de parametros para o relatorio, mesmo que nao existam
             Map parametros = new HashMap();
+
+            // Executa relatoio
+            JasperPrint impressao = JasperFillManager.fillReport(relatorio, parametros, ConexaoBD.getInstance().getConnection());
+
+            // Exibe resultado em video
+            JasperViewer.viewReport(impressao, false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
+        }
+    }
+    
+    public void gerarRelatorioRobusto(String path, Map params) {
+        try {
+            // Compila o relatorio
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream(path));
+
+            // Mapeia campos de parametros para o relatorio, mesmo que nao existam
+            Map parametros = params;
+
+            // adiciona parametros
+//            parametros.put("nomeParametro1","valorParametro1");
+//            parametros.put("nomeParametro2","valorParametro2");
 
             // Executa relatoio
             JasperPrint impressao = JasperFillManager.fillReport(relatorio, parametros, ConexaoBD.getInstance().getConnection());

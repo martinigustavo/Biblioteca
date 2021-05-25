@@ -4,7 +4,7 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BD_Biblioteca"/>
 	<queryString language="SQL">
-		<![CDATA[select l.*, livaut.autores, livgen.generos
+		<![CDATA[select l.cod_livro, l.isbn , l.titulo, l.ano , l.edicao, l.volume , l.exemplares , tl.tipo, ed.nome, livaut.autores, livgen.generos
 from livro l 
 join (
  		select string_agg(aut2.nome_sobrenome, ', ') as autores, aut2.cod_livro
@@ -27,7 +27,18 @@ join (
  		) as aut
  		group by aut.cod_livro
 ) as livgen on l.cod_livro  = livgen.cod_livro
-order by cod_livro;]]>
+join (
+		select *
+		from tipolivro t 
+) as tl on l.cod_tipolivro = tl.cod_tipolivro
+join (
+		select *
+		from editora e 
+) as ed on l.cod_editora = ed.cod_editora
+order by l.titulo;
+
+
+]]>
 	</queryString>
 	<field name="cod_livro" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="cod_livro"/>
@@ -59,20 +70,20 @@ order by cod_livro;]]>
 		<property name="com.jaspersoft.studio.field.label" value="volume"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
 	</field>
-	<field name="cod_tipolivro" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="cod_tipolivro"/>
-		<property name="com.jaspersoft.studio.field.label" value="cod_tipolivro"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
-	</field>
 	<field name="exemplares" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="exemplares"/>
 		<property name="com.jaspersoft.studio.field.label" value="exemplares"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
 	</field>
-	<field name="cod_editora" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="cod_editora"/>
-		<property name="com.jaspersoft.studio.field.label" value="cod_editora"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+	<field name="tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipolivro"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="editora"/>
 	</field>
 	<field name="autores" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="autores"/>
@@ -86,25 +97,29 @@ order by cod_livro;]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<staticText>
-				<reportElement x="316" y="26" width="170" height="26" uuid="f86ff796-96dd-4253-bde2-5d85593bd83f"/>
+				<reportElement x="210" y="17" width="359" height="26" uuid="f86ff796-96dd-4253-bde2-5d85593bd83f"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="19" isBold="true"/>
 				</textElement>
-				<text><![CDATA[RELATÓRIO - LIVROS]]></text>
+				<text><![CDATA[RELATÓRIO - LIVROS CADASTRADOS]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch">
+		<band height="70" splitType="Stretch">
 			<textField>
-				<reportElement x="266" y="6" width="283" height="22" uuid="54ed1f7d-a3d0-4fff-bc26-5d60bfb5b276"/>
+				<reportElement x="225" y="25" width="330" height="20" uuid="54ed1f7d-a3d0-4fff-bc26-5d60bfb5b276"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["BiblioSystem™: Library Management Software"]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="10" y="10" width="49" height="49" uuid="b13bd779-8546-4290-b580-7d0ea08f3ba9"/>
+				<imageExpression><![CDATA["https://image.flaticon.com/icons/png/512/4272/4272834.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -140,7 +155,7 @@ order by cod_livro;]]>
 				<text><![CDATA[ISBN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="120" y="0" width="170" height="30" backcolor="#64D1A0" uuid="9a22cf64-d459-440b-abe3-66b51090d56a">
+				<reportElement mode="Opaque" x="120" y="0" width="130" height="30" backcolor="#64D1A0" uuid="9a22cf64-d459-440b-abe3-66b51090d56a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="78771f76-be9b-4606-816d-06946a8a4e56"/>
 				</reportElement>
 				<box>
@@ -155,7 +170,7 @@ order by cod_livro;]]>
 				<text><![CDATA[Título]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="290" y="0" width="40" height="30" backcolor="#64D1A0" uuid="6d623a43-5718-4e03-af81-ce89f17676a1">
+				<reportElement mode="Opaque" x="250" y="0" width="40" height="30" backcolor="#64D1A0" uuid="6d623a43-5718-4e03-af81-ce89f17676a1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="81607dee-837a-426a-9a9a-cd3c02c4c303"/>
 				</reportElement>
 				<box>
@@ -170,7 +185,7 @@ order by cod_livro;]]>
 				<text><![CDATA[Ano]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="330" y="0" width="40" height="30" backcolor="#64D1A0" uuid="d08960ad-e6e3-47e5-9ade-08379c4e321a">
+				<reportElement mode="Opaque" x="290" y="0" width="40" height="30" backcolor="#64D1A0" uuid="d08960ad-e6e3-47e5-9ade-08379c4e321a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c41da05-4e26-4e1d-961c-8576ce5dbf69"/>
 				</reportElement>
 				<box>
@@ -185,7 +200,7 @@ order by cod_livro;]]>
 				<text><![CDATA[Edição]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="370" y="0" width="40" height="30" backcolor="#64D1A0" uuid="258d0724-e690-4bc6-b7a5-fd82259b934d">
+				<reportElement mode="Opaque" x="330" y="0" width="40" height="30" backcolor="#64D1A0" uuid="258d0724-e690-4bc6-b7a5-fd82259b934d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e939a5d0-7526-4e73-89af-3ced5e2aac29"/>
 				</reportElement>
 				<box>
@@ -200,7 +215,7 @@ order by cod_livro;]]>
 				<text><![CDATA[Volume]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="410" y="0" width="60" height="30" backcolor="#64D1A0" uuid="a19a756e-6ab6-41b4-90cf-85e85a15a202">
+				<reportElement mode="Opaque" x="370" y="0" width="60" height="30" backcolor="#64D1A0" uuid="a19a756e-6ab6-41b4-90cf-85e85a15a202">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="06e99ac0-7be6-41fc-900f-1d0660ef32aa"/>
 				</reportElement>
 				<box>
@@ -212,10 +227,10 @@ order by cod_livro;]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cód.Tipo]]></text>
+				<text><![CDATA[Tipo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="470" y="0" width="60" height="30" backcolor="#64D1A0" uuid="4ca44c7a-4d1d-44f3-8f7e-deea2c329fd7">
+				<reportElement mode="Opaque" x="430" y="0" width="60" height="30" backcolor="#64D1A0" uuid="4ca44c7a-4d1d-44f3-8f7e-deea2c329fd7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a76f806b-83c6-44e7-8d97-88f0cc85bc26"/>
 				</reportElement>
 				<box>
@@ -230,7 +245,7 @@ order by cod_livro;]]>
 				<text><![CDATA[Num. de exemplares]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="530" y="0" width="50" height="30" backcolor="#64D1A0" uuid="4daab8a4-52a6-4177-aec9-ee7380fb6b77">
+				<reportElement mode="Opaque" x="490" y="0" width="90" height="30" backcolor="#64D1A0" uuid="4daab8a4-52a6-4177-aec9-ee7380fb6b77">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a2616b7-53a5-4c3a-8026-92867f7605b8"/>
 				</reportElement>
 				<box>
@@ -242,7 +257,7 @@ order by cod_livro;]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cód. Editora]]></text>
+				<text><![CDATA[Editora]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="580" y="0" width="120" height="30" backcolor="#64D1A0" uuid="b8c22e4d-71c0-4057-93d4-72b11970b656">
@@ -272,7 +287,7 @@ order by cod_livro;]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Generos]]></text>
+				<text><![CDATA[Categorias]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -305,7 +320,7 @@ order by cod_livro;]]>
 				<textFieldExpression><![CDATA[$F{isbn}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="120" y="0" width="170" height="43" uuid="bf3ed08b-cfc1-4232-bbbb-bff64d21a136">
+				<reportElement x="120" y="0" width="130" height="43" uuid="bf3ed08b-cfc1-4232-bbbb-bff64d21a136">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="78771f76-be9b-4606-816d-06946a8a4e56"/>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -318,7 +333,7 @@ order by cod_livro;]]>
 				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="290" y="0" width="40" height="43" uuid="73355459-1d85-4fc5-ad3a-0c875409760e">
+				<reportElement x="250" y="0" width="40" height="43" uuid="73355459-1d85-4fc5-ad3a-0c875409760e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="81607dee-837a-426a-9a9a-cd3c02c4c303"/>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -331,7 +346,7 @@ order by cod_livro;]]>
 				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="330" y="0" width="40" height="43" uuid="35d5228f-d1c2-46e7-b778-d2804b6dcea7">
+				<reportElement x="290" y="0" width="40" height="43" uuid="35d5228f-d1c2-46e7-b778-d2804b6dcea7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c41da05-4e26-4e1d-961c-8576ce5dbf69"/>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -344,7 +359,7 @@ order by cod_livro;]]>
 				<textFieldExpression><![CDATA[$F{edicao}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="0" width="40" height="43" uuid="e154f12b-5706-42ef-9708-5eb44b48206f">
+				<reportElement x="330" y="0" width="40" height="43" uuid="e154f12b-5706-42ef-9708-5eb44b48206f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e939a5d0-7526-4e73-89af-3ced5e2aac29"/>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -357,7 +372,7 @@ order by cod_livro;]]>
 				<textFieldExpression><![CDATA[$F{volume}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="410" y="0" width="60" height="43" uuid="22bf6953-dcf2-40cd-bb19-71152baa1699">
+				<reportElement x="370" y="0" width="60" height="43" uuid="22bf6953-dcf2-40cd-bb19-71152baa1699">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="06e99ac0-7be6-41fc-900f-1d0660ef32aa"/>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -367,10 +382,10 @@ order by cod_livro;]]>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{cod_tipolivro}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="470" y="0" width="60" height="43" uuid="98c1bb9a-3368-4f06-b9d6-41130d552a5c">
+				<reportElement x="430" y="0" width="60" height="43" uuid="98c1bb9a-3368-4f06-b9d6-41130d552a5c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a76f806b-83c6-44e7-8d97-88f0cc85bc26"/>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -383,7 +398,7 @@ order by cod_livro;]]>
 				<textFieldExpression><![CDATA[$F{exemplares}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="530" y="0" width="50" height="43" uuid="d7272b25-883b-4b46-8dfd-32b7cfea9d82">
+				<reportElement x="490" y="0" width="90" height="43" uuid="d7272b25-883b-4b46-8dfd-32b7cfea9d82">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a2616b7-53a5-4c3a-8026-92867f7605b8"/>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -393,7 +408,7 @@ order by cod_livro;]]>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{cod_editora}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="580" y="0" width="120" height="43" uuid="3b8892d7-03ee-41f5-9d52-6bb717c4b759">
@@ -429,7 +444,7 @@ order by cod_livro;]]>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement x="350" y="20" width="100" height="16" uuid="ceef142f-65fb-4646-8a08-bbe4c737ff04"/>
+				<reportElement x="374" y="11" width="30" height="16" uuid="ceef142f-65fb-4646-8a08-bbe4c737ff04"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>

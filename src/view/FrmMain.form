@@ -135,25 +135,31 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mniRelatorioLivrosCadastrados">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Livros cadastrados"/>
+                <Property name="text" type="java.lang.String" value="Todos livros cadastrados"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniRelatorioLivrosCadastradosActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+            <MenuItem class="javax.swing.JMenuItem" name="mniRelatorioUsuariosCadastrados">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Usu&#xe1;rios cadastrados"/>
+                <Property name="text" type="java.lang.String" value="Todos usu&#xe1;rios cadastrados"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniRelatorioUsuariosCadastradosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mniRelatorioLivros">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Livros por categoria"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniRelatorioLivrosActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio 3"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio 4"/>
+                <Property name="text" type="java.lang.String" value="Idades dos usu&#xe1;rios"/>
               </Properties>
             </MenuItem>
           </SubComponents>

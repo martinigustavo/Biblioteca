@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Window;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import utils.Data;

@@ -6,8 +6,9 @@
 package view;
 
 import dao.FuncionarioDAO;
+import java.util.HashMap;
 import javax.swing.JInternalFrame;
-import reports.ReportListaDeLivros;
+import reports.ReportsGenerator;
 
 /**
  *
@@ -83,9 +84,9 @@ public class FrmMain extends javax.swing.JFrame {
         mniConsultarEmprestimos = new javax.swing.JMenuItem();
         mnuRelatorios = new javax.swing.JMenu();
         mniRelatorioLivrosCadastrados = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mniRelatorioUsuariosCadastrados = new javax.swing.JMenuItem();
+        mniRelatorioLivros = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1621, 1000));
@@ -222,7 +223,7 @@ public class FrmMain extends javax.swing.JFrame {
         mnuRelatorios.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/pie-chart48.png")); // NOI18N
         mnuRelatorios.setText("Relatórios");
 
-        mniRelatorioLivrosCadastrados.setText("Livros cadastrados");
+        mniRelatorioLivrosCadastrados.setText("Todos livros cadastrados");
         mniRelatorioLivrosCadastrados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniRelatorioLivrosCadastradosActionPerformed(evt);
@@ -230,14 +231,24 @@ public class FrmMain extends javax.swing.JFrame {
         });
         mnuRelatorios.add(mniRelatorioLivrosCadastrados);
 
-        jMenuItem4.setText("Usuários cadastrados");
-        mnuRelatorios.add(jMenuItem4);
+        mniRelatorioUsuariosCadastrados.setText("Todos usuários cadastrados");
+        mniRelatorioUsuariosCadastrados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniRelatorioUsuariosCadastradosActionPerformed(evt);
+            }
+        });
+        mnuRelatorios.add(mniRelatorioUsuariosCadastrados);
 
-        jMenuItem5.setText("Relatório 3");
+        mniRelatorioLivros.setText("Livros por categoria");
+        mniRelatorioLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniRelatorioLivrosActionPerformed(evt);
+            }
+        });
+        mnuRelatorios.add(mniRelatorioLivros);
+
+        jMenuItem5.setText("Idades dos usuários");
         mnuRelatorios.add(jMenuItem5);
-
-        jMenuItem6.setText("Relatório 4");
-        mnuRelatorios.add(jMenuItem6);
 
         mnbMain.add(mnuRelatorios);
 
@@ -337,8 +348,20 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_mniConsultarEmprestimosActionPerformed
 
     private void mniRelatorioLivrosCadastradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRelatorioLivrosCadastradosActionPerformed
-        new ReportListaDeLivros().gerarRelatorio();
+        new ReportsGenerator().gerarRelatorioSimples("/reports/report_livros_landscape.jrxml");
     }//GEN-LAST:event_mniRelatorioLivrosCadastradosActionPerformed
+
+    private void mniRelatorioUsuariosCadastradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRelatorioUsuariosCadastradosActionPerformed
+        new ReportsGenerator().gerarRelatorioSimples("/reports/report_usuarios_landscape.jrxml");
+    }//GEN-LAST:event_mniRelatorioUsuariosCadastradosActionPerformed
+
+    private void mniRelatorioLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRelatorioLivrosActionPerformed
+        IfrRelatorioLivro ifrRelatorioLivro = new IfrRelatorioLivro();
+        if (!contemFrame(ifrRelatorioLivro)) {
+            dkpMain.add(ifrRelatorioLivro);
+            ifrRelatorioLivro.setVisible(true);
+        }
+    }//GEN-LAST:event_mniRelatorioLivrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,9 +400,7 @@ public class FrmMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dkpMain;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JLabel lblFuncionario;
     private javax.swing.JMenuBar mnbMain;
     private javax.swing.JMenuItem mniAutor;
@@ -392,7 +413,9 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniLeitor;
     private javax.swing.JMenuItem mniLivro;
     private javax.swing.JMenuItem mniPerfil;
+    private javax.swing.JMenuItem mniRelatorioLivros;
     private javax.swing.JMenuItem mniRelatorioLivrosCadastrados;
+    private javax.swing.JMenuItem mniRelatorioUsuariosCadastrados;
     private javax.swing.JMenu mnuCadastros;
     private javax.swing.JMenu mnuEmprestimos;
     private javax.swing.JMenu mnuLivros;
