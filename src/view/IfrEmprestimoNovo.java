@@ -19,9 +19,12 @@ import entities.Perfil;
 import entities.Usuario;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import reports.ReportsGenerator;
 import utils.Data;
 import utils.Validacao;
 
@@ -598,6 +601,10 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Empréstimo criado com sucesso!");
 
                 limparCadastro();
+                
+                Map params = new HashMap();
+                params.put("pCodEmprestimo", emprestimoDAO.returnId);
+                new ReportsGenerator().gerarRelatorioRobusto("/reports/report_novo_emprestimo.jrxml", params);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Problema ao criar empréstimo!");
