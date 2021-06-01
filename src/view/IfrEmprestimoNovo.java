@@ -130,6 +130,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             tblExemplares.getColumnModel().getColumn(0).setMaxWidth(70);
         }
 
+        btnExemplarAdd.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/plus.png")); // NOI18N
         btnExemplarAdd.setText("Adicionar exemplar");
         btnExemplarAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +138,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             }
         });
 
+        btnExemplarRemover.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/delete.png")); // NOI18N
         btnExemplarRemover.setText("Remover exemplar");
         btnExemplarRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +146,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             }
         });
 
-        lblCodExemplar.setText("Cód. exemplar:");
+        lblCodExemplar.setText("Exemplar:");
 
         lblInfos.setFont(new java.awt.Font("Cantarell", 1, 16)); // NOI18N
         lblInfos.setText("Informações do usuário");
@@ -165,6 +167,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
 
         lblUsuarioSituacao.setText("   ");
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/close.png")); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +175,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             }
         });
 
+        btnCriarEmprestimo.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/floppy-disk.png")); // NOI18N
         btnCriarEmprestimo.setText("Criar Empréstimo");
         btnCriarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +183,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             }
         });
 
+        btnBuscarUsuario.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png")); // NOI18N
         btnBuscarUsuario.setText("Buscar");
         btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +191,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             }
         });
 
+        btnNovo.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/new.png")); // NOI18N
         btnNovo.setText("Novo");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,17 +286,15 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(ftfDataDevolucao)
                                             .addComponent(ftfDataRetirada))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblCodExemplar)
-                                .addGap(18, 18, 18)
+                                .addGap(18, 18, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblCodExemplar)
+                                        .addGap(18, 18, 18)
                                         .addComponent(txfCodExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btnExemplarAdd))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(82, 82, 82)
-                                        .addComponent(btnExemplarRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(btnExemplarRemover, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblSituacao)

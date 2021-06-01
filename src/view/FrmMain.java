@@ -6,7 +6,6 @@
 package view;
 
 import dao.FuncionarioDAO;
-import java.util.HashMap;
 import javax.swing.JInternalFrame;
 import reports.ReportsGenerator;
 

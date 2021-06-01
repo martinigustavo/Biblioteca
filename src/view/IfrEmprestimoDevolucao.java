@@ -92,6 +92,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
 
         lblUsuario.setText("Usuário:");
 
+        btnBuscarUsuario.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png")); // NOI18N
         btnBuscarUsuario.setText("Buscar");
         btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +126,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Empréstimos:");
 
+        btnMultas.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/money.png")); // NOI18N
         btnMultas.setText("Multas");
         btnMultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +134,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             }
         });
 
+        btnEmprestimoInfos.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/info.png")); // NOI18N
         btnEmprestimoInfos.setText("Informações do empréstimo");
         btnEmprestimoInfos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +145,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jLabel3.setText("Empréstimo pendente");
 
+        btnDevolver.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/return.png")); // NOI18N
         btnDevolver.setText("Devolver");
         btnDevolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +153,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             }
         });
 
+        btnRenovar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/renew.png")); // NOI18N
         btnRenovar.setText("Renovar");
         btnRenovar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +161,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             }
         });
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/close.png")); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +173,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
 
         lblUsuarioNome.setText(" ");
 
+        btnLimpar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/clean.png")); // NOI18N
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,15 +223,13 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnMultas)
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnCancelar))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(btnRenovar)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnDevolver)))))
+                            .addComponent(btnRenovar)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnDevolver))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnLimpar)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnCancelar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)

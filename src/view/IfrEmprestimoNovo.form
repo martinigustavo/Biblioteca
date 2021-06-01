@@ -86,19 +86,16 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="lblCodExemplar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblCodExemplar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="txfCodExemplar" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnExemplarAdd" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                                      <Component id="btnExemplarRemover" min="-2" pref="157" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnExemplarRemover" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -244,6 +241,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnExemplarAdd">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/plus.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Adicionar exemplar"/>
       </Properties>
       <Events>
@@ -252,6 +252,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnExemplarRemover">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/delete.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Remover exemplar"/>
       </Properties>
       <Events>
@@ -260,7 +263,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblCodExemplar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="C&#xf3;d. exemplar:"/>
+        <Property name="text" type="java.lang.String" value="Exemplar:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblInfos">
@@ -313,6 +316,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/close.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
@@ -321,6 +327,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCriarEmprestimo">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/floppy-disk.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Criar Empr&#xe9;stimo"/>
       </Properties>
       <Events>
@@ -329,6 +338,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscarUsuario">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
       <Events>
@@ -337,6 +349,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnNovo">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/new.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Novo"/>
       </Properties>
       <Events>

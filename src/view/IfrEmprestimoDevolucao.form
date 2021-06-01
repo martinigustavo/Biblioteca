@@ -48,18 +48,14 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="btnMultas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnLimpar" max="32767" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnRenovar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnDevolver" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="btnRenovar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnDevolver" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -146,6 +142,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscarUsuario">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
       <Events>
@@ -225,6 +224,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMultas">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/money.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Multas"/>
       </Properties>
       <Events>
@@ -233,6 +235,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnEmprestimoInfos">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/info.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es do empr&#xe9;stimo"/>
       </Properties>
       <Events>
@@ -249,6 +254,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnDevolver">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/return.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Devolver"/>
       </Properties>
       <Events>
@@ -257,6 +265,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnRenovar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/renew.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Renovar"/>
       </Properties>
       <Events>
@@ -265,6 +276,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/close.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
@@ -287,6 +301,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/clean.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Limpar"/>
       </Properties>
       <Events>

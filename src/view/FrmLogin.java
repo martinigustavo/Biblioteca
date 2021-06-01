@@ -60,6 +60,7 @@ public class FrmLogin extends javax.swing.JFrame {
         lblSenha.setFont(new java.awt.Font("Cantarell", 1, 16)); // NOI18N
         lblSenha.setText("Senha:");
 
+        btnEntrar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/log-in.png")); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
