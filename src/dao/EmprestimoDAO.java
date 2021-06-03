@@ -288,7 +288,7 @@ public class EmprestimoDAO implements IDAOT<Emprestimo> {
         // cabecalho da tabela
         Object[] cabecalho = new Object[7];
         cabecalho[0] = "Cód.";
-        cabecalho[1] = "Data Retirada";
+        cabecalho[1] = "Data Empréstimo";
         cabecalho[2] = "Data Devolução";
         cabecalho[3] = "Renovações";
         cabecalho[4] = "Devolvido";

@@ -65,6 +65,8 @@ public class IfrLivro extends javax.swing.JInternalFrame {
         btnProcurarEditora.getText();
         new CombosDAO().popularCombo("tipolivro", "cod_tipolivro", "tipo", cbxTipoLivro, "");
         hglTblAutor.setVisible(false);
+        
+        txfEditora.setEditable(false);
     }
 
     /**
@@ -324,8 +326,6 @@ public class IfrLivro extends javax.swing.JInternalFrame {
             tblLivro.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        txfEditora.setEnabled(false);
-
         javax.swing.GroupLayout pnlCadastroLayout = new javax.swing.GroupLayout(pnlCadastro);
         pnlCadastro.setLayout(pnlCadastroLayout);
         pnlCadastroLayout.setHorizontalGroup(
@@ -457,9 +457,7 @@ public class IfrLivro extends javax.swing.JInternalFrame {
                                     .addComponent(cbxTipoLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(pnlCadastroLayout.createSequentialGroup()
                                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlCadastroLayout.createSequentialGroup()
-                                        .addComponent(hglNome6)
-                                        .addGap(40, 40, 40))
+                                    .addComponent(hglNome6)
                                     .addGroup(pnlCadastroLayout.createSequentialGroup()
                                         .addGap(40, 40, 40)
                                         .addComponent(hglNome7)))
@@ -471,9 +469,8 @@ public class IfrLivro extends javax.swing.JInternalFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnRemoverAutor)
-                                .addComponent(btnAddAutor))
+                            .addComponent(btnAddAutor)
+                            .addComponent(btnRemoverAutor)
                             .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2)
                                 .addComponent(btnRemoverGenero))

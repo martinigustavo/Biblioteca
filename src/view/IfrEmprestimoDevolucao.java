@@ -12,7 +12,6 @@ import dao.LivroDAO;
 import dao.PerfilDAO;
 import dao.UsuarioDAO;
 import entities.Emprestimo;
-import entities.EmprestimoExemplar;
 import entities.Exemplar;
 import entities.Perfil;
 import entities.Usuario;
@@ -299,8 +298,6 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
         lblCod.setText("");
         lblDataDevolucao.setText("");
         emprestimoDAO.popularTabela(tblEmprestimos, 0, "", "");
-//        emprestimoDAO.popularTabela(tblEmprestimoPendente, 0, "", "");
-
         cod_usuario = 0;
 
         txfUsuario.requestFocus();
@@ -327,7 +324,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             perfil = perfilDAO.consultarId(usuario.getCod_perfil());
             prazo = perfil.getPrazo();
 
-            emprestimoDAO.popularTabela(tblEmprestimos, cod_usuario, "", "");
+            emprestimoDAO.popularTabela(tblEmprestimos, cod_usuario, "", "devolvido");
 //            emprestimoDAO.popularTabela(tblEmprestimoPendente, cod_usuario, "AND devolvido = false ", "");
             if (emprestimos.size() > 0) {
 
