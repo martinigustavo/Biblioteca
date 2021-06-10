@@ -18,11 +18,14 @@ import entities.Exemplar;
 import entities.Perfil;
 import entities.Usuario;
 import java.awt.Color;
+import java.awt.Frame;
+import java.awt.Window;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import reports.ReportsGenerator;
 import utils.Data;
@@ -71,7 +74,6 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblUsuario = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblExemplares = new javax.swing.JTable();
         btnExemplarAdd = new javax.swing.JButton();
@@ -92,7 +94,6 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
         btnNovo = new javax.swing.JButton();
         lblApto = new javax.swing.JLabel();
         lblUsuarioApto = new javax.swing.JLabel();
-        txfUsuario = new javax.swing.JTextField();
         lblRenovacoes = new javax.swing.JLabel();
         lblUsuarioRenovacoes = new javax.swing.JLabel();
         txfCodExemplar = new javax.swing.JTextField();
@@ -103,8 +104,6 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
         ftfDataRetirada = new javax.swing.JFormattedTextField();
         ftfDataDevolucao = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-
-        lblUsuario.setText("Usuário:");
 
         tblExemplares.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -184,7 +183,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
         });
 
         btnBuscarUsuario.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png")); // NOI18N
-        btnBuscarUsuario.setText("Buscar");
+        btnBuscarUsuario.setText("Buscar Usuário");
         btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarUsuarioActionPerformed(evt);
@@ -242,30 +241,16 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(216, 216, 216)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnBuscarUsuario)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblUsuario)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblPrazo)
+                                    .addComponent(lblLimite)
+                                    .addComponent(lblRenovacoes))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblPrazo)
-                                            .addComponent(lblLimite)
-                                            .addComponent(lblRenovacoes))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblUsuarioLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblUsuarioPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblUsuarioRenovacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblInfos)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblNome)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(lblUsuarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(lblUsuarioLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblUsuarioPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblUsuarioRenovacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnNovo)
                                 .addGap(18, 18, 18)
@@ -287,14 +272,22 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                                             .addComponent(ftfDataDevolucao)
                                             .addComponent(ftfDataRetirada))))
                                 .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(lblCodExemplar)
+                                .addGap(18, 18, 18)
+                                .addComponent(txfCodExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnExemplarAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnExemplarRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBuscarUsuario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lblCodExemplar)
+                                    .addComponent(lblInfos)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblNome)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txfCodExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnExemplarAdd))
-                                    .addComponent(btnExemplarRemover, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                        .addComponent(lblUsuarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblSituacao)
@@ -308,28 +301,22 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblUsuario)
-                            .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscarUsuario))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblInfos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNome)
-                            .addComponent(lblUsuarioNome))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblLimite)
-                            .addComponent(lblUsuarioLimite))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPrazo)
-                            .addComponent(lblUsuarioPrazo))))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblInfos)
+                    .addComponent(btnBuscarUsuario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(lblUsuarioNome))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLimite)
+                    .addComponent(lblUsuarioLimite))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPrazo)
+                    .addComponent(lblUsuarioPrazo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRenovacoes)
@@ -362,7 +349,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(ftfDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnCriarEmprestimo)
@@ -393,7 +380,6 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
     }
 
     private void limparCadastro() {
-        txfUsuario.setText("");
         txfCodExemplar.setText("");
         ftfDataDevolucao.setText("");
         ftfDataRetirada.setText("");
@@ -409,20 +395,17 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
 
         id = 0;
         cod_usuario = 0;
-
-        txfUsuario.requestFocus();
     }
 
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
+        Frame parentFrame = (Frame) SwingUtilities.getAncestorOfClass(Window.class, this);
+        DlgBuscaUsuario dlgBuscaUsuario = new DlgBuscaUsuario(parentFrame, true);
+        dlgBuscaUsuario.setVisible(true);
+        
         try {
             apto = true;
 
-            if (txfUsuario.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Nenhum usuário informado!");
-                return;
-            }
-
-            cod_usuario = Integer.parseInt(txfUsuario.getText());
+            cod_usuario = dlgBuscaUsuario.cod_usuario;
             usuario = usuarioDAO.consultarId(cod_usuario);
             Perfil perfil = perfilDAO.consultarId(usuario.getCod_perfil());
             ArrayList<Emprestimo> emprestimos = new EmprestimoDAO().consultar(cod_usuario + "");
@@ -443,7 +426,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             lblUsuarioApto.setText(apto ? "Sim" : "Pendente");
             lblUsuarioApto.setForeground(apto ? Color.BLACK : Color.red);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Usuário não existe!");
+            JOptionPane.showMessageDialog(null, "Problema ao buscar usuário!");
             System.out.println("Erro: " + e.toString());
         }
 
@@ -648,7 +631,6 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblQtdeLivros;
     private javax.swing.JLabel lblRenovacoes;
     private javax.swing.JLabel lblSituacao;
-    private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuarioApto;
     private javax.swing.JLabel lblUsuarioLimite;
     private javax.swing.JLabel lblUsuarioNome;
@@ -657,6 +639,5 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblUsuarioSituacao;
     private javax.swing.JTable tblExemplares;
     private javax.swing.JTextField txfCodExemplar;
-    private javax.swing.JTextField txfUsuario;
     // End of variables declaration//GEN-END:variables
 }

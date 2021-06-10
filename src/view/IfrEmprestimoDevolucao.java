@@ -65,8 +65,6 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblUsuario = new javax.swing.JLabel();
-        txfUsuario = new javax.swing.JTextField();
         btnBuscarUsuario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmprestimos = new javax.swing.JTable();
@@ -79,7 +77,6 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
         lblUsuarioNome = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -89,10 +86,8 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
         lblDataDevolucao = new javax.swing.JLabel();
         lblAtrasado = new javax.swing.JLabel();
 
-        lblUsuario.setText("Usuário:");
-
         btnBuscarUsuario.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png")); // NOI18N
-        btnBuscarUsuario.setText("Buscar");
+        btnBuscarUsuario.setText("Buscar Usuário");
         btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarUsuarioActionPerformed(evt);
@@ -168,8 +163,6 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Nome:");
-
         lblUsuarioNome.setText(" ");
 
         btnLimpar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/clean.png")); // NOI18N
@@ -202,21 +195,12 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnEmprestimoInfos)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblUsuario)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnBuscarUsuario)
-                                    .addGap(39, 39, 39)
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblUsuarioNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(93, 93, 93))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(btnBuscarUsuario)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblUsuarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jSeparator2)
                         .addGroup(layout.createSequentialGroup()
@@ -246,10 +230,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsuario)
-                    .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarUsuario)
-                    .addComponent(jLabel1)
                     .addComponent(lblUsuarioNome))
                 .addGap(22, 22, 22)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,18 +273,19 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void limparCadastro() {
-        txfUsuario.setText("");
         lblUsuarioNome.setText("");
         lblAtrasado.setText("");
         lblCod.setText("");
         lblDataDevolucao.setText("");
         emprestimoDAO.popularTabela(tblEmprestimos, 0, "", "");
         cod_usuario = 0;
-
-        txfUsuario.requestFocus();
     }
 
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
+        Frame parentFrame = (Frame) SwingUtilities.getAncestorOfClass(Window.class, this);
+        DlgBuscaUsuario dlgBuscaUsuario = new DlgBuscaUsuario(parentFrame, true);
+        dlgBuscaUsuario.setVisible(true);
+        
         try {
             lblAtrasado.setText("");
             lblCod.setText("");
@@ -313,19 +295,14 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             podeRenovar = true;
             atrasado = false;
             cod_emprestimoPendente = 0;
-
-            if (txfUsuario.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Nenhum usuário informado!");
-                return;
-            }
-            cod_usuario = Integer.parseInt(txfUsuario.getText());
+            
+            cod_usuario = dlgBuscaUsuario.cod_usuario;
             usuario = usuarioDAO.consultarId(cod_usuario);
             emprestimos = emprestimoDAO.consultar(cod_usuario + "");
             perfil = perfilDAO.consultarId(usuario.getCod_perfil());
             prazo = perfil.getPrazo();
 
             emprestimoDAO.popularTabela(tblEmprestimos, cod_usuario, "", "devolvido");
-//            emprestimoDAO.popularTabela(tblEmprestimoPendente, cod_usuario, "AND devolvido = false ", "");
             if (emprestimos.size() > 0) {
 
                 for (Emprestimo emp : emprestimos) {
@@ -360,9 +337,9 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
                     }
                 }
             }
-            lblUsuarioNome.setText(usuario.getNome() + " " + usuario.getSobrenome());
+            lblUsuarioNome.setText(usuario.getId() + " - " + usuario.getNome() + " " + usuario.getSobrenome());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Usuário não existe!");
+            JOptionPane.showMessageDialog(null, "Problema ao buscar usuário!");
             System.err.println("Erro: " + e.toString());
         }
     }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
@@ -465,7 +442,6 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnMultas;
     private javax.swing.JButton btnRenovar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -477,9 +453,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblAtrasado;
     private javax.swing.JLabel lblCod;
     private javax.swing.JLabel lblDataDevolucao;
-    private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuarioNome;
     private javax.swing.JTable tblEmprestimos;
-    private javax.swing.JTextField txfUsuario;
     // End of variables declaration//GEN-END:variables
 }
