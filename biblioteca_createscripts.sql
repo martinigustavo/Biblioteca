@@ -99,7 +99,8 @@ CREATE TABLE IF NOT EXISTS usuario (
 CREATE TABLE IF NOT EXISTS emprestimo (
     cod_emprestimo SERIAL NOT NULL,
     data_retirada DATE NOT NULL,
-    data_devolucao DATE,
+    data_devolucao DATE NOT NULL,
+    data_devolvido DATE,
     renovacoes INT NOT NULL,
     devolvido BOOLEAN NOT NULL,
     cod_usuario INT NOT NULL,
@@ -285,21 +286,21 @@ INSERT INTO usuario (nome, sobrenome, endereco, cpf, email, data_nasc, data_cada
 -- Insert empréstimos
 -- -----------------------------------------------------
 INSERT INTO emprestimo
-(data_retirada, data_devolucao, renovacoes, devolvido, cod_usuario, cod_func) VALUES 
-    ('10/10/2020', '10/17/2020', 0 ,true, 4, 1),
-    ('01/11/2020', '02/21/2021', 0 ,true, 3, 1),
-    ('03/15/2021', null, 0 ,false, 2, 1),
-    ('12/22/2020', '01/23/2021', 0 ,true, 1, 1),
-    ('10/10/2019', null, 0 ,false, 3, 1),
-    ('01/01/2019', null, 0 ,false, 5, 1),
-    ('02/28/2021', '03/10/2021', 0 ,true, 2, 1),
-    ('10/10/2020', '10/17/2020', 0 ,true, 3, 1),
-    ('01/11/2020', '02/21/2021', 0 ,true, 4, 1),
-    ('03/15/2021', null, 0 ,false, 1, 1),
-    ('12/22/2020', '01/23/2021', 0 ,true, 5, 1),
-    ('10/10/2019', null, 0 ,false, 6, 1),
-    ('01/01/2019', '06/01/2019', 0 ,true, 2, 1),
-    ('02/28/2021', '03/10/2021', 0 ,true, 4, 1);
+(data_retirada, data_devolucao, data_devolvido, renovacoes, devolvido, cod_usuario, cod_func) VALUES 
+    ('10/10/2020', '10/17/2020', '10/17/2020', 0 ,true, 4, 1),
+    ('01/11/2020', '01/18/2020', '02/21/2021', 0 ,true, 3, 1),
+    ('03/15/2021', '03/29/2021', null, 0 ,false, 2, 1),
+    ('12/22/2020', '01/12/2020', '01/23/2021', 0 ,true, 1, 1),
+    ('10/10/2019', '10/17/2019', null, 0 ,false, 3, 1),
+    ('01/01/2019', '01/15/2019', null, 0 ,false, 5, 1),
+    ('02/28/2021', '03/14/2021', '03/10/2021', 0 ,true, 2, 1),
+    ('10/10/2020', '10/17/2020', '10/17/2020', 0 ,true, 3, 1),
+    ('01/11/2020', '01/18/2020', '02/21/2021', 0 ,true, 4, 1),
+    ('03/15/2021', '05/05/2021', null, 0 ,false, 1, 1),
+    ('12/22/2020', '01/05/2020', '01/23/2021', 0 ,true, 5, 1),
+    ('10/10/2019', '10/31/2019', null, 0 ,false, 6, 1),
+    ('01/01/2019', '01/15/2019', '06/01/2019', 0 ,true, 2, 1),
+    ('02/28/2021', '03/07/2021', '03/10/2021', 0 ,true, 4, 1);
 
 -- -----------------------------------------------------
 -- Insert multas

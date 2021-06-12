@@ -61,7 +61,7 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="ftfDataDevolucao" max="32767" attributes="0"/>
+                                          <Component id="ftfDataDevolvido" max="32767" attributes="0"/>
                                           <Component id="ftfDataRetirada" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -165,7 +165,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ftfDataDevolucao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ftfDataDevolvido" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="17" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -386,7 +386,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ftfDataDevolucao">
+    <Component class="javax.swing.JFormattedTextField" name="ftfDataDevolvido">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="##/##/####" subtype="-1" type="5"/>
@@ -395,7 +395,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Data devolu&#xe7;&#xe3;o:"/>
+        <Property name="text" type="java.lang.String" value="Data devolvido:"/>
       </Properties>
     </Component>
   </SubComponents>

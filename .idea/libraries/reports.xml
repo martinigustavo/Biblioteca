@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="reports">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/reports/commons-digester3-3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reports/jasperreports-javaflow-6.12.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reports/itext-2.1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reports/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reports/commons-collections4-4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reports/commons-digester-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reports/commons-javaflow-1590792.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reports/net.sf.jasperreports_6.12.2.final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reports/net.tascalate.javaflow.api-2.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reports/commons-beanutils-1.9.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reports/groovy-all_2.4.16.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

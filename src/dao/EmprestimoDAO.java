@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JLabel;
@@ -35,29 +37,30 @@ public class EmprestimoDAO implements IDAOT<Emprestimo> {
 
             Connection conn = ConexaoBD.getInstance().getConnection();
 
-            System.out.println("CHECK 2");
             int id = emprestimo.getId();
             Date data_retirada = Data.stringToDate(emprestimo.getData_retirada());
-            Date data_devolucao = emprestimo.getData_devolucao().equals("")
-                    ? null : Data.stringToDate(emprestimo.getData_devolucao());
+            Date data_devolucao = Data.stringToDate(emprestimo.getData_devolucao());
+            Date data_devolvido = emprestimo.getData_devolvido().equals("")
+                    ? null : Data.stringToDate(emprestimo.getData_devolvido());
             Integer renovacoes = emprestimo.getRenovacoes();
-            boolean devolvido = data_devolucao == null ? false : true;
+            boolean devolvido = data_devolvido == null ? false : true;
             Integer cod_usuario = emprestimo.getCod_usuario();
             Integer cod_func = emprestimo.getCod_func();
-
-            System.out.println("CHECK3");
+            
             String sql = "";
-            if (data_devolucao == null) {
-                sql = "Insert into emprestimo (data_retirada, renovacoes, devolvido, cod_usuario, cod_func) values "
+            if (data_devolvido == null) {
+                sql = "Insert into emprestimo (data_retirada, data_devolucao, renovacoes, devolvido, cod_usuario, cod_func) values "
                         + " ('" + data_retirada + "',"
+                        + " '" + data_devolucao + "',"
                         + " '" + renovacoes + "',"
                         + " '" + devolvido + "',"
                         + " '" + cod_usuario + "',"
                         + " '" + cod_func + "') RETURNING cod_emprestimo";
             } else {
-                sql = "Insert into emprestimo (data_retirada, data_devolucao, renovacoes, devolvido, cod_usuario, cod_func) values "
+                sql = "Insert into emprestimo (data_retirada, data_devolucao, data_devolvido, renovacoes, devolvido, cod_usuario, cod_func) values "
                         + " ('" + data_retirada + "',"
                         + " '" + data_devolucao + "',"
+                        + " '" + data_devolvido + "',"
                         + " '" + renovacoes + "',"
                         + " '" + devolvido + "',"
                         + " '" + cod_usuario + "',"
@@ -94,11 +97,12 @@ public class EmprestimoDAO implements IDAOT<Emprestimo> {
 
             int id = emprestimo.getId();
             int renovacoes = emprestimo.getRenovacoes();
+            Date data_devolucao = Data.stringToDate(emprestimo.getData_devolucao());
 
             String sql = "UPDATE emprestimo "
-                    + "SET renovacoes = " + renovacoes + " "
-//                    + "data_devolucao = " + data_devolucao + " "
-                    + "where cod_emprestimo = " + id;
+                    + "SET data_devolucao = '" + data_devolucao + "', "
+                    + "renovacoes = " + renovacoes + " "
+                    + "WHERE cod_emprestimo = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -133,8 +137,11 @@ public class EmprestimoDAO implements IDAOT<Emprestimo> {
                 emprestimo.setData_retirada(Data.dateToString(retorno.getDate("data_retirada")));
                 
                 Date data_devolucao = retorno.getDate("data_devolucao");
-                String data_devolucaoString = data_devolucao == null ? "" : Data.dateToString(data_devolucao);
-                emprestimo.setData_devolucao(data_devolucaoString);
+                emprestimo.setData_devolucao(Data.dateToString(data_devolucao));
+                
+                Date data_devolvido = retorno.getDate("data_devolvido");
+                String data_devolvidoString = data_devolvido == null ? "" : Data.dateToString(data_devolvido);
+                emprestimo.setData_devolvido(data_devolvidoString);
                 emprestimo.setRenovacoes(retorno.getInt("renovacoes"));
                 emprestimo.setDevolvido(retorno.getBoolean("devolvido"));
                 emprestimo.setCod_usuario(retorno.getInt("cod_usuario"));
@@ -182,7 +189,7 @@ public class EmprestimoDAO implements IDAOT<Emprestimo> {
         Object[] cabecalho = new Object[7];
         cabecalho[0] = "Cód.";
         cabecalho[1] = "Data Retirada";
-        cabecalho[2] = "Data Devolução";
+        cabecalho[2] = "Data Devolvido";
         cabecalho[3] = "Renovações";
         cabecalho[4] = "Devolvido";
         cabecalho[5] = "Usuário";
@@ -220,9 +227,9 @@ public class EmprestimoDAO implements IDAOT<Emprestimo> {
             while (resultadoQ.next()) {
                 dadosTabela[lin][0] = resultadoQ.getInt("cod_emprestimo");
                 dadosTabela[lin][1] = Data.dateToString(resultadoQ.getDate("data_retirada"));
-                String data_devolucao = resultadoQ.getDate("data_devolucao") == null
-                        ? "" : Data.dateToString(resultadoQ.getDate("data_devolucao"));
-                dadosTabela[lin][2] = data_devolucao;
+                String data_devolvido = resultadoQ.getDate("data_devolvido") == null
+                        ? "" : Data.dateToString(resultadoQ.getDate("data_devolvido"));
+                dadosTabela[lin][2] = data_devolvido;
                 dadosTabela[lin][3] = resultadoQ.getInt("renovacoes");
                 boolean devolvido = resultadoQ.getBoolean("devolvido");
                 dadosTabela[lin][4] = devolvido ? "devolvido" : "pendente";
@@ -289,7 +296,7 @@ public class EmprestimoDAO implements IDAOT<Emprestimo> {
         Object[] cabecalho = new Object[7];
         cabecalho[0] = "Cód.";
         cabecalho[1] = "Data Empréstimo";
-        cabecalho[2] = "Data Devolução";
+        cabecalho[2] = "Data Devolvido";
         cabecalho[3] = "Renovações";
         cabecalho[4] = "Devolvido";
         cabecalho[5] = "Usuário";
@@ -327,9 +334,9 @@ public class EmprestimoDAO implements IDAOT<Emprestimo> {
             while (resultadoQ.next()) {
                 dadosTabela[lin][0] = resultadoQ.getInt("cod_emprestimo");
                 dadosTabela[lin][1] = Data.dateToString(resultadoQ.getDate("data_retirada"));
-                String data_devolucao = resultadoQ.getDate("data_devolucao") == null
-                        ? "" : Data.dateToString(resultadoQ.getDate("data_devolucao"));
-                dadosTabela[lin][2] = data_devolucao;
+                String data_devolvido = resultadoQ.getDate("data_devolvido") == null
+                        ? "" : Data.dateToString(resultadoQ.getDate("data_devolvido"));
+                dadosTabela[lin][2] = data_devolvido;
                 dadosTabela[lin][3] = resultadoQ.getInt("renovacoes");
                 boolean devolvido = resultadoQ.getBoolean("devolvido");
                 dadosTabela[lin][4] = devolvido ? "devolvido" : "pendente";
@@ -394,7 +401,7 @@ public class EmprestimoDAO implements IDAOT<Emprestimo> {
             Statement stm = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "update emprestimo "
-                    + "set data_devolucao = '" + Data.stringToDate(Data.dateToString(Data.dataAtual())) + "', "
+                    + "set data_devolvido = '" + Data.stringToDate(Data.dateToString(Data.dataAtual())) + "', "
                     + "devolvido = true "
                     + "where cod_emprestimo = " + id;
 

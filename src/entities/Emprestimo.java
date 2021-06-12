@@ -14,6 +14,7 @@ public class Emprestimo {
     private int id;
     private String data_retirada;
     private String data_devolucao;
+    private String data_devolvido;
     private int renovacoes;
     private boolean devolvido;
     private int cod_usuario;
@@ -24,10 +25,11 @@ public class Emprestimo {
     public Emprestimo() {
     }
 
-    public Emprestimo(int id, String data_retirada, String data_devolucao, int renovacoes, boolean devolvido, int cod_usuario, int cod_func) {
+    public Emprestimo(int id, String data_retirada, String data_devolucao, String data_devolvido, int renovacoes, boolean devolvido, int cod_usuario, int cod_func) {
         this.id = id;
         this.data_retirada = data_retirada;
         this.data_devolucao = data_devolucao;
+        this.data_devolvido = data_devolvido;
         this.renovacoes = renovacoes;
         this.devolvido = devolvido;
         this.cod_usuario = cod_usuario;
@@ -56,6 +58,14 @@ public class Emprestimo {
 
     public void setData_devolucao(String data_devolucao) {
         this.data_devolucao = data_devolucao;
+    }
+
+    public String getData_devolvido() {
+        return data_devolvido;
+    }
+
+    public void setData_devolvido(String data_devolvido) {
+        this.data_devolvido = data_devolvido;
     }
 
     public int getRenovacoes() {

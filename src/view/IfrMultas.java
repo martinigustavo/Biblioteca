@@ -5,29 +5,23 @@
  */
 package view;
 
-import dao.EmprestimoDAO;
-import dao.EmprestimoExemplarDAO;
-import dao.ExemplarDAO;
-import dao.LivroDAO;
-import dao.PerfilDAO;
-import dao.UsuarioDAO;
+import dao.*;
 import entities.Emprestimo;
 import entities.Exemplar;
 import entities.Perfil;
 import entities.Usuario;
-import java.awt.Frame;
-import java.awt.Window;
+import utils.Data;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import utils.Data;
 
 /**
  *
  * @author Gustavo Martini
  */
-public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
+public class IfrMultas extends javax.swing.JInternalFrame {
 
     int cod_usuario = 0;
     int cod_emprestimoPendente = 0;
@@ -48,9 +42,9 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
     /**
      * Creates new form IfrEmprestimo
      */
-    public IfrEmprestimoDevolucao() {
+    public IfrMultas() {
         initComponents();
-        setTitle("Devolver ou Renovar Empréstimo");
+        setTitle("Gerenciar multas");
         setClosable(true);
 
         limparTela();
@@ -71,20 +65,12 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         btnMultas = new javax.swing.JButton();
         btnEmprestimoInfos = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         btnDevolver = new javax.swing.JButton();
         btnRenovar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         lblUsuarioNome = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        lblCod = new javax.swing.JLabel();
-        lblDataDevolucao = new javax.swing.JLabel();
-        lblAtrasado = new javax.swing.JLabel();
 
         btnBuscarUsuario.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png")); // NOI18N
         btnBuscarUsuario.setText("Buscar Usuário");
@@ -118,7 +104,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             tblEmprestimos.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        jLabel2.setText("Empréstimos:");
+        jLabel2.setText("Empréstimos com multa pendente:");
 
         btnMultas.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/money.png")); // NOI18N
         btnMultas.setText("Multas");
@@ -136,11 +122,8 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
-        jLabel3.setText("Empréstimo pendente");
-
         btnDevolver.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/return.png")); // NOI18N
-        btnDevolver.setText("Devolver");
+        btnDevolver.setText("Pagar multa");
         btnDevolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDevolverActionPerformed(evt);
@@ -173,56 +156,31 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel4.setText("Cód.:");
-
-        jLabel5.setText("Data para devolução:");
-
-        jLabel6.setText("Atrasado:");
-
-        lblCod.setText(" ");
-
-        lblDataDevolucao.setText(" ");
-
-        lblAtrasado.setText(" ");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnEmprestimoInfos)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(btnBuscarUsuario)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblUsuarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator2)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnMultas)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnRenovar)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnDevolver))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnLimpar)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnCancelar)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnEmprestimoInfos)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(btnBuscarUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblUsuarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+                    .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                        .addComponent(btnMultas)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCod, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAtrasado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnRenovar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDevolver))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnLimpar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar)))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -240,23 +198,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEmprestimoInfos)
-                .addGap(22, 22, 22)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lblCod))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(lblDataDevolucao))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(lblAtrasado))
-                .addGap(7, 7, 7)
+                .addGap(187, 187, 187)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDevolver)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -279,7 +221,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
         lblDataDevolucao.setText("");
         emprestimoDAO.popularTabela(tblEmprestimos, 0, "", "");
         cod_usuario = 0;
-
+        
         btnMultas.setEnabled(false);
         btnRenovar.setEnabled(false);
         btnDevolver.setEnabled(false);
@@ -289,7 +231,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
         Frame parentFrame = (Frame) SwingUtilities.getAncestorOfClass(Window.class, this);
         DlgBuscaUsuario dlgBuscaUsuario = new DlgBuscaUsuario(parentFrame, true);
         dlgBuscaUsuario.setVisible(true);
-
+        
         try {
             lblAtrasado.setText("");
             lblCod.setText("");
@@ -298,7 +240,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             podeRenovar = true;
             atrasado = false;
             cod_emprestimoPendente = 0;
-
+            
             cod_usuario = dlgBuscaUsuario.cod_usuario;
             usuario = usuarioDAO.consultarId(cod_usuario);
             emprestimos = emprestimoDAO.consultar(cod_usuario + "");
@@ -307,7 +249,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
 
             emprestimoDAO.popularTabela(tblEmprestimos, cod_usuario, "", "devolvido");
             if (emprestimos.size() > 0) {
-
+                
                 btnDevolver.setEnabled(true);
 
                 for (Emprestimo emp : emprestimos) {
@@ -323,19 +265,17 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
                         System.out.println("renovacoes perfil" + perfil.getQtde_renovacoes());
                         btnRenovar.setEnabled(true);
                     }
-//
-//                    String data_retirada = emprestimo.getData_retirada();
-//                    Date data_retiradaDate = Data.stringToDate(data_retirada);
-//                    prazo = emprestimo.getRenovacoes() != 0 ? prazo * emprestimo.getRenovacoes() : prazo;
-//                    Date data_diasSomados = Data.somarDia(data_retiradaDate, prazo);
 
+                    String data_retirada = emprestimo.getData_retirada();
+                    Date data_retiradaDate = Data.stringToDate(data_retirada);
+
+                    prazo = emprestimo.getRenovacoes() != 0 ? prazo * emprestimo.getRenovacoes() : prazo;
+
+                    Date data_diasSomados = Data.somarDia(data_retiradaDate, prazo);
+                    long diferenca_datas = Data.compareDates(Data.dataAtual(), data_diasSomados);
                     lblCod.setText(emprestimo.getId() + "");
-
-                    long diferenca_datas = Data.compareDates(Data.dataAtual(), Data.stringToDate(emprestimo.getData_devolucao()));
-
-                    lblDataDevolucao.setText(emprestimo.getData_devolucao());
+                    lblDataDevolucao.setText(Data.dateToString(data_diasSomados));
                     atrasado = diferenca_datas < 0;
-
                     String lblAtrasadoString = atrasado ? "Sim" : "Não";
                     lblAtrasado.setText(lblAtrasadoString);
                     if (atrasado) {
@@ -374,38 +314,31 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEmprestimoInfosActionPerformed
 
     private void btnRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenovarActionPerformed
-        try {
-            if (atrasado) {
-                JOptionPane.showMessageDialog(null, "Empréstimo atrasado não pode ser renovado!");
-                return;
-            }
-            
-            String retorno = "";
-            
-            int qtdeRenovacoesDisponiveis = perfil.getQtde_renovacoes() - emprestimo.getRenovacoes();
-            
-            if (qtdeRenovacoesDisponiveis <= 0) {
-                JOptionPane.showMessageDialog(null, "Este empréstimo já atingiu o limite de renovações!");
-                return;
-            }
+         try {
+            if (!atrasado) {
+                String retorno = "";
 
-            Date data_devolucaoDate = Data.stringToDate(emprestimo.getData_devolucao());
+                if (emprestimo.getRenovacoes() == perfil.getQtde_renovacoes()) {
+                    JOptionPane.showMessageDialog(null, "Este empréstimo não pode mais ser renovado!");
+                    return;
+                }
 
-            Date novaDataDevolucaoDate = Data.somarDia(data_devolucaoDate, prazo);
-            String novaDataDevolucao = Data.dateToString(novaDataDevolucaoDate);
+                String data_retirada = emprestimo.getData_retirada();
+                Date data_retiradaDate = Data.stringToDate(data_retirada);
+                Date data_diasSomados = Data.somarDia(data_retiradaDate, prazo);
 
-            int renovacoesAtualizada = emprestimo.getRenovacoes() + 1;
+                Date data_renovada = Data.somarDia(data_diasSomados, prazo);
 
-            emprestimo.setRenovacoes(renovacoesAtualizada);
-            emprestimo.setData_devolucao(novaDataDevolucao);
+                emprestimo.setRenovacoes(emprestimo.getRenovacoes() + 1);
 
-            retorno = emprestimoDAO.atualizar(emprestimo);
+                retorno = emprestimoDAO.atualizar(emprestimo);
 
-            if (retorno == null) {
-                lblDataDevolucao.setText(emprestimo.getData_devolucao());
-                JOptionPane.showMessageDialog(null, "Empréstimo renovado com sucesso.");
+                if (retorno == null) {
+                    lblDataDevolucao.setText(Data.dateToString(data_renovada));
+                    JOptionPane.showMessageDialog(null, "Empréstimo renovado com sucesso.");
 
-                emprestimoDAO.popularTabela(tblEmprestimos, cod_usuario, "", "");
+                    emprestimoDAO.popularTabela(tblEmprestimos, cod_usuario, "", "");
+                }
             }
 
         } catch (Exception e) {
@@ -457,16 +390,8 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnMultas;
     private javax.swing.JButton btnRenovar;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblAtrasado;
-    private javax.swing.JLabel lblCod;
-    private javax.swing.JLabel lblDataDevolucao;
     private javax.swing.JLabel lblUsuarioNome;
     private javax.swing.JTable tblEmprestimos;
     // End of variables declaration//GEN-END:variables

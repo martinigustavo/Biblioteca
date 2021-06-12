@@ -21,6 +21,7 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Window;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -102,7 +103,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         ftfDataRetirada = new javax.swing.JFormattedTextField();
-        ftfDataDevolucao = new javax.swing.JFormattedTextField();
+        ftfDataDevolvido = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
 
         tblExemplares.setModel(new javax.swing.table.DefaultTableModel(
@@ -222,12 +223,12 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
         }
 
         try {
-            ftfDataDevolucao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            ftfDataDevolvido.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        jLabel4.setText("Data devolução:");
+        jLabel4.setText("Data devolvido:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,7 +270,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                                             .addComponent(jLabel4))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ftfDataDevolucao)
+                                            .addComponent(ftfDataDevolvido)
                                             .addComponent(ftfDataRetirada))))
                                 .addGap(18, 18, Short.MAX_VALUE)
                                 .addComponent(lblCodExemplar)
@@ -348,7 +349,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(ftfDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftfDataDevolvido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
@@ -381,7 +382,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
 
     private void limparCadastro() {
         txfCodExemplar.setText("");
-        ftfDataDevolucao.setText("");
+        ftfDataDevolvido.setText("");
         ftfDataRetirada.setText("");
         lblUsuarioNome.setText("");
         lblUsuarioLimite.setText("");
@@ -526,16 +527,16 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             String data_retirada = ftfDataRetirada.getText().equals("  /  /    ")
                     ? Data.dateToString(Data.dataAtual()) : ftfDataRetirada.getText();
 
-            String data_devolucao = ftfDataDevolucao.getText().equals("  /  /    ")
-                    ? "" : ftfDataDevolucao.getText();
+            String data_devolvido = ftfDataDevolvido.getText().equals("  /  /    ")
+                    ? "" : ftfDataDevolvido.getText();
 
             System.out.println("CHECK 1");
             Validacao val = new Validacao();
 
             boolean datasValidas = true;
 
-            if (!data_devolucao.isEmpty()) {
-                datasValidas = val.validarDataFormatada(data_devolucao)
+            if (!data_devolvido.isEmpty()) {
+                datasValidas = val.validarDataFormatada(data_devolvido)
                         && val.validarDataFormatada(data_retirada);
             }
 
@@ -545,24 +546,31 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                     return;
                 }
 
-                if (!ftfDataDevolucao.getText().equals("  /  /    ")) {
+                if (!ftfDataDevolvido.getText().equals("  /  /    ")) {
                     JOptionPane.showMessageDialog(null, "Digite uma data de devolução válida!");
                     return;
                 }
             }
 
-            if (data_retirada.isEmpty() && !data_devolucao.isEmpty()) {
+            if (data_retirada.isEmpty() && !data_devolvido.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "A data devolução deve ser maior que a data de retirada!"
                         + "\n"
                         + "A data de retirada em branco será preenchida com a data atual.");
                 return;
             }
-
+            
+            Perfil perfil = perfilDAO.consultarId(usuario.getCod_perfil());
+            int prazo = perfil.getPrazo();
+            Date data_retiradaAsDate = Data.stringToDate(data_retirada);
+            Date data_devolucaoAsDate = Data.somarDia(data_retiradaAsDate, prazo);
+            String data_devolucao = Data.dateToString(data_devolucaoAsDate);
+            
             Emprestimo emprestimo = new Emprestimo();
             emprestimo.setCod_func(cod_funcionario);
             emprestimo.setCod_usuario(cod_usuario);
             emprestimo.setData_retirada(data_retirada);
             emprestimo.setData_devolucao(data_devolucao);
+            emprestimo.setData_devolvido(data_devolvido);
             emprestimo.setRenovacoes(0);
             emprestimo.setDevolvido(false);
 
@@ -615,7 +623,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnExemplarAdd;
     private javax.swing.JButton btnExemplarRemover;
     private javax.swing.JButton btnNovo;
-    private javax.swing.JFormattedTextField ftfDataDevolucao;
+    private javax.swing.JFormattedTextField ftfDataDevolvido;
     private javax.swing.JFormattedTextField ftfDataRetirada;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
