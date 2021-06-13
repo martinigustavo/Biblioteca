@@ -346,7 +346,7 @@ ORDER BY u.nome]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="470" y="0" width="60" height="30" uuid="13010104-ee20-4bea-be1d-e86b57ac6cc4">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="75e17434-2126-4d93-b3fb-f6835da77250"/>
 				</reportElement>
@@ -359,7 +359,7 @@ ORDER BY u.nome]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{data_nasc}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="530" y="0" width="56" height="30" uuid="a80d88b8-9652-47f7-be92-ac729be709cd">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2be9be9f-1833-4724-8799-f81f10ebd1c1"/>
 				</reportElement>

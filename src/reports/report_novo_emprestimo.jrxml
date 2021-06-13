@@ -3,6 +3,8 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_usuarios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1ea38013-7152-4663-ae7d-463fc63d2c65">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BD_Biblioteca"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="736"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="264"/>
 	<parameter name="pCodEmprestimo" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[select l.*, e.*, p.*, e2.cod_exemplar 
@@ -12,7 +14,8 @@ left join exemplar e2 on ee.cod_exemplar = e2.cod_exemplar
 left join livro l on e2.cod_livro = l.cod_livro 
 left join usuario u on u.cod_usuario = e.cod_usuario 
 left join perfil p on p.cod_perfil = u.cod_perfil
-where e.cod_emprestimo = $P{pCodEmprestimo}]]>
+where e.cod_emprestimo = $P{pCodEmprestimo}
+order by l.titulo]]>
 	</queryString>
 	<field name="cod_livro" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="cod_livro"/>
@@ -72,6 +75,11 @@ where e.cod_emprestimo = $P{pCodEmprestimo}]]>
 	<field name="data_devolucao" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.name" value="data_devolucao"/>
 		<property name="com.jaspersoft.studio.field.label" value="data_devolucao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+	</field>
+	<field name="data_devolvido" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="data_devolvido"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_devolvido"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
 	</field>
 	<field name="renovacoes" class="java.lang.Integer">
@@ -170,7 +178,7 @@ where e.cod_emprestimo = $P{pCodEmprestimo}]]>
 				</reportElement>
 				<text><![CDATA[Data do empréstimo:]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="100" y="16" width="100" height="16" uuid="6a130107-f638-4ffb-aafa-d6d265f573b2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b796a28-b84d-4b40-b143-b7b174a2514c"/>
 				</reportElement>
@@ -191,7 +199,7 @@ where e.cod_emprestimo = $P{pCodEmprestimo}]]>
 				<reportElement x="0" y="32" width="100" height="18" uuid="ae1e72d7-bf89-49ac-92ff-e0a94406f06c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b796a28-b84d-4b40-b143-b7b174a2514c"/>
 				</reportElement>
-				<text><![CDATA[Prazo p/ devolução:]]></text>
+				<text><![CDATA[Data de devolução:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="124" width="185" height="30" backcolor="#64D1A0" uuid="5a766d5d-2f28-4eca-8502-a4b2c1a2ba85">
@@ -238,11 +246,11 @@ where e.cod_emprestimo = $P{pCodEmprestimo}]]>
 				</textElement>
 				<text><![CDATA[Cód. Exemplar]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="100" y="32" width="100" height="18" uuid="f0c18f8d-3463-415a-80fc-bf1f6e3161a9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fc41ceb3-ba07-4825-b129-cd6c795826d2"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{prazo} + " dias"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data_devolucao}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="50" width="100" height="16" uuid="b742a593-6ccf-4868-9453-7bf96c54d782"/>

@@ -307,14 +307,17 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
 
             emprestimoDAO.popularTabela(tblEmprestimos, cod_usuario, "", "devolvido");
             if (emprestimos.size() > 0) {
-
-                btnDevolver.setEnabled(true);
-
                 for (Emprestimo emp : emprestimos) {
                     if (emp.isDevolvido() == false) {
                         emprestimo = emp;
                         cod_emprestimoPendente = emp.getId();
                     }
+                }
+
+                if (cod_emprestimoPendente == 0) {
+                    btnDevolver.setEnabled(false);
+                } else {
+                    btnDevolver.setEnabled(true);
                 }
 
                 if (emprestimo != null) {
@@ -323,11 +326,6 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
                         System.out.println("renovacoes perfil" + perfil.getQtde_renovacoes());
                         btnRenovar.setEnabled(true);
                     }
-//
-//                    String data_retirada = emprestimo.getData_retirada();
-//                    Date data_retiradaDate = Data.stringToDate(data_retirada);
-//                    prazo = emprestimo.getRenovacoes() != 0 ? prazo * emprestimo.getRenovacoes() : prazo;
-//                    Date data_diasSomados = Data.somarDia(data_retiradaDate, prazo);
 
                     lblCod.setText(emprestimo.getId() + "");
 
@@ -379,11 +377,11 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Empréstimo atrasado não pode ser renovado!");
                 return;
             }
-            
+
             String retorno = "";
-            
+
             int qtdeRenovacoesDisponiveis = perfil.getQtde_renovacoes() - emprestimo.getRenovacoes();
-            
+
             if (qtdeRenovacoesDisponiveis <= 0) {
                 JOptionPane.showMessageDialog(null, "Este empréstimo já atingiu o limite de renovações!");
                 return;
@@ -405,7 +403,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
                 lblDataDevolucao.setText(emprestimo.getData_devolucao());
                 JOptionPane.showMessageDialog(null, "Empréstimo renovado com sucesso.");
 
-                emprestimoDAO.popularTabela(tblEmprestimos, cod_usuario, "", "");
+                emprestimoDAO.popularTabela(tblEmprestimos, cod_usuario, "", "devolvido");
             }
 
         } catch (Exception e) {
@@ -416,25 +414,26 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
 
     private void btnDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverActionPerformed
         try {
-            if (atrasado) {
-                String retorno = "";
+//            if (atrasado) {
+//            }
 
-                ArrayList<Exemplar> exemplares = new ArrayList<>();
-                exemplares = new EmprestimoExemplarDAO().consultar(cod_emprestimoPendente + "");
+            String retorno = "";
 
-                for (Exemplar ex : exemplares) {
+            ArrayList<Exemplar> exemplares = new ArrayList<>();
+            exemplares = new EmprestimoExemplarDAO().consultar(cod_emprestimoPendente + "");
+
+            for (Exemplar ex : exemplares) {
 //                    retorno = new EmprestimoExemplarDAO().excluir(cod_emprestimoPendente, ex.getId());
-                    ex.setCod_estado(1);
-                    retorno = new ExemplarDAO().atualizar(ex);
-                }
+                ex.setCod_estado(1);
+                retorno = new ExemplarDAO().atualizar(ex);
+            }
 
-                retorno = emprestimoDAO.excluir(cod_emprestimoPendente);
+            retorno = emprestimoDAO.excluir(cod_emprestimoPendente);
 
-                if (retorno == null) {
-                    JOptionPane.showMessageDialog(null, "Empréstimo devolvido com sucesso.");
+            if (retorno == null) {
+                JOptionPane.showMessageDialog(null, "Empréstimo devolvido com sucesso.");
 
-                    limparTela();
-                }
+                emprestimoDAO.popularTabela(tblEmprestimos, cod_usuario, "", "");
             }
 
         } catch (Exception e) {
