@@ -106,6 +106,7 @@ public class Emprestimo {
         sb.append("Emprestimo{id=").append(id);
         sb.append(", data_retirada=").append(data_retirada);
         sb.append(", data_devolucao=").append(data_devolucao);
+        sb.append(", data_devolvido=").append(data_devolvido);
         sb.append(", renovacoes=").append(renovacoes);
         sb.append(", devolvido=").append(devolvido);
         sb.append(", cod_usuario=").append(cod_usuario);

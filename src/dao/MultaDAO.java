@@ -5,7 +5,10 @@
  */
 package dao;
 
+import entities.Emprestimo;
 import entities.Multa;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -24,29 +27,41 @@ import utils.Data;
  */
 public class MultaDAO implements IDAOT<Multa> {
 
+    public int returnId = 0;
+
     @Override
     public String salvar(Multa multa) {
         try {
-            Statement stm = ConexaoBD.getInstance().getConnection().createStatement();
+            Connection conn = ConexaoBD.getInstance().getConnection();
 
-            Double valor = multa.getValor();
-            boolean pago = multa.isPago();
-            Date data_pgto = multa.getData_pgto() == ""
-                    ? null : Data.stringToDate(multa.getData_pgto());
+//            Double valor = multa.getValor();
+//            boolean pago = multa.isPago();
+//            Date data_pgto = multa.getData_pgto() == ""
+//                    ? null : Data.stringToDate(multa.getData_pgto());
             int cod_emprestimo = multa.getEmprestimo().getId();
 
             String sql = "INSERT INTO multa "
-                    + "(valor, pago, data_pgto, cod_emprestimo) VALUES "
+                    + "(cod_emprestimo) VALUES "
                     + "("
-                    + " '" + valor + "',"
-                    + " '" + pago + "',"
-                    + " '" + data_pgto + "',"
-                    + " '" + cod_emprestimo + "')";
+                    //                    + " '" + valor + "',"
+                    //                    + " '" + pago + "',"
+                    //                    + " '" + data_pgto + "',"
+                    + " '" + cod_emprestimo + "') RETURNING cod_multa";
 
-            System.out.println(
-                    "SQL: " + sql);
+            PreparedStatement ps = conn.prepareStatement(sql,
+                    Statement.RETURN_GENERATED_KEYS);
 
-            int resultado = stm.executeUpdate(sql);
+            ps.execute();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            int generatedKey = 0;
+            if (rs.next()) {
+                generatedKey = rs.getInt(1);
+            }
+
+            returnId = generatedKey;
+
+            System.out.println("Inserted record's ID: " + generatedKey);
 
             return null;
         } catch (Exception e) {
@@ -61,13 +76,13 @@ public class MultaDAO implements IDAOT<Multa> {
             Statement stm = ConexaoBD.getInstance().getConnection().createStatement();
 
             int id = multa.getId();
-            Double valor = multa.getValor();
+//            Double valor = multa.getValor();
             boolean pago = multa.isPago();
             Date data_pgto = Data.stringToDate(multa.getData_pgto());
 
-            String sql = "UPDATE perfil "
-                    + "SET valor = " + valor + ", "
-                    + "pago = '" + pago + "', "
+            String sql = "UPDATE multa "
+                    //                    + "SET valor = " + valor + ", "
+                    + "SET pago = '" + pago + "', "
                     + "data_pgto = '" + data_pgto + "' "
                     + "where cod_multa = " + id;
 
@@ -118,16 +133,17 @@ public class MultaDAO implements IDAOT<Multa> {
         // efetua consulta na tabela
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT count(m.*) "
+                    + "SELECT m.* "
                     + "FROM multa m "
                     + "JOIN emprestimo e on m.cod_emprestimo = e.cod_emprestimo "
                     + "WHERE e.cod_usuario = " + criterio
-                    + " ORDER BY e.data_retirada");
+                    + " ORDER BY m.pago");
 
             while (resultadoQ.next()) {
                 dadosTabela[lin][0] = resultadoQ.getInt("cod_multa");
                 dadosTabela[lin][1] = resultadoQ.getDouble("valor");
-                dadosTabela[lin][2] = resultadoQ.getBoolean("pago");
+                String isPago = resultadoQ.getBoolean("pago") == true ? "Pago" : "Pendente";
+                dadosTabela[lin][2] = isPago;
                 dadosTabela[lin][3] = resultadoQ.getDate("data_pgto");
                 dadosTabela[lin][4] = resultadoQ.getInt("cod_emprestimo");
 
@@ -204,9 +220,74 @@ public class MultaDAO implements IDAOT<Multa> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public boolean consultar(int cod_usuario) {
+        Multa multa = null;
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "SELECT * "
+                    + "FROM multa m "
+                    + "join emprestimo e on m.cod_emprestimo = e.cod_emprestimo "
+                    + "where m.pago = 'false' and e.cod_usuario = " + cod_usuario;
+
+            System.out.println("SQL: " + sql);
+
+            ResultSet retorno = st.executeQuery(sql);
+
+            if (retorno.next()) {
+                return true;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar todas multas de um usuário: " + e);
+        }
+
+        return false;
+    }
+
     @Override
     public Multa consultarId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Multa multa = null;
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "select * "
+                    + "from multa "
+                    + "where cod_multa = " + id;
+
+            System.out.println("SQL: " + sql);
+
+            ResultSet retorno = st.executeQuery(sql);
+
+            if (retorno.next()) {
+                multa = new Multa();
+
+                multa.setId(retorno.getInt("cod_multa"));
+                multa.setValor(retorno.getDouble("valor"));
+                multa.setPago(retorno.getBoolean("pago"));
+
+                int cod_emprestimo = retorno.getInt("cod_emprestimo");
+                Emprestimo emprestimo = new EmprestimoDAO().consultarId(cod_emprestimo);
+                multa.setEmprestimo(emprestimo);
+
+//                long diferencaDias = new Data().compareDates(
+//                        Data.stringToDate(emprestimo.getData_devolucao()),
+//                        Data.stringToDate(emprestimo.getData_devolvido())
+//                );
+                Date data_pgto = retorno.getDate("data_pgto");
+                String data_pgtoString = data_pgto == null ? "" : Data.dateToString(data_pgto);
+                multa.setData_pgto(data_pgtoString);
+
+                System.out.println(multa.toString());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar empréstimo: " + e);
+        }
+
+        return multa;
     }
 
 }

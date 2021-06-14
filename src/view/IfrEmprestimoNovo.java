@@ -10,6 +10,7 @@ import dao.EmprestimoExemplarDAO;
 import dao.ExemplarDAO;
 import dao.FuncionarioDAO;
 import dao.LivroDAO;
+import dao.MultaDAO;
 import dao.PerfilDAO;
 import dao.UsuarioDAO;
 import entities.Emprestimo;
@@ -423,7 +424,11 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                     apto = false;
                 }
             }
-
+            
+            boolean pendente = new MultaDAO().consultar(cod_usuario);
+            
+            apto = pendente ? false : true;
+            
             lblUsuarioApto.setText(apto ? "Sim" : "Pendente");
             lblUsuarioApto.setForeground(apto ? Color.BLACK : Color.red);
         } catch (Exception e) {
@@ -530,7 +535,6 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             String data_devolvido = ftfDataDevolvido.getText().equals("  /  /    ")
                     ? "" : ftfDataDevolvido.getText();
 
-            System.out.println("CHECK 1");
             Validacao val = new Validacao();
 
             boolean datasValidas = true;
