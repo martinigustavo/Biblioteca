@@ -76,6 +76,7 @@ public class IfrBuscaVideoEmprestimos extends javax.swing.JInternalFrame {
         txfUsuario = new javax.swing.JTextField();
         btnBuscarFunc = new javax.swing.JButton();
         btnBuscarUsuario = new javax.swing.JButton();
+        chbDesc = new javax.swing.JCheckBox();
 
         jLabel2.setText("De ");
 
@@ -193,6 +194,8 @@ public class IfrBuscaVideoEmprestimos extends javax.swing.JInternalFrame {
             }
         });
 
+        chbDesc.setText("Desc.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,27 +228,29 @@ public class IfrBuscaVideoEmprestimos extends javax.swing.JInternalFrame {
                                             .addGap(18, 18, 18)
                                             .addComponent(ftfDataFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
-                                            .addGap(38, 38, 38)
+                                            .addGap(29, 29, 29)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(jLabel4)
-                                                .addComponent(jLabel9))
+                                                .addComponent(jLabel9)
+                                                .addComponent(jLabel10))
                                             .addGap(18, 18, 18)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(txfFunc)
-                                                .addComponent(txfUsuario))
+                                                .addComponent(txfUsuario)
+                                                .addComponent(cbxOrdenar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGap(18, 18, 18)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(btnBuscarFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGap(25, 25, 25)
-                                    .addComponent(jLabel11))
-                                .addComponent(btnBuscar)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel10))
+                                                .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(chbDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGap(24, 24, 24)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel11)
+                                        .addComponent(jLabel6)))
+                                .addComponent(btnBuscar))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(cbxSituacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, 160, Short.MAX_VALUE)
-                                .addComponent(cbxOrdenar, javax.swing.GroupLayout.Alignment.TRAILING, 0, 160, Short.MAX_VALUE)
                                 .addComponent(txfCodEmprestimo, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btnLimpar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(60, Short.MAX_VALUE))
@@ -264,34 +269,37 @@ public class IfrBuscaVideoEmprestimos extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3)
                             .addComponent(ftfDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
-                            .addComponent(cbxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
+                            .addComponent(jLabel6)
+                            .addComponent(cbxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6))
-                            .addComponent(btnBuscarFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel4)
-                                .addComponent(txfFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnBuscarFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel4)
+                                        .addComponent(txfFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel9)
-                                    .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(txfCodEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel11)
+                                .addComponent(txfCodEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(cbxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chbDesc))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar)
                     .addComponent(btnLimpar))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -383,17 +391,21 @@ public class IfrBuscaVideoEmprestimos extends javax.swing.JInternalFrame {
             if (cbxOrdenar.getSelectedIndex() == 0) {
                 order = " ORDER BY cod_emprestimo";
             } else if (cbxOrdenar.getSelectedIndex() == 1) {
-                order = " ORDER BY data_retirada DESC";
+                order = " ORDER BY data_retirada";
             } else if (cbxOrdenar.getSelectedIndex() == 2) {
-                order = " ORDER BY data_devolucao DESC";
+                order = " ORDER BY data_devolucao";
             } else if (cbxOrdenar.getSelectedIndex() == 3) {
-                order = " ORDER BY devolvido DESC";
+                order = " ORDER BY devolvido";
             } else if (cbxOrdenar.getSelectedIndex() == 4) {
                 order = " ORDER BY cod_usuario";
             } else if (cbxOrdenar.getSelectedIndex() == 5) {
                 order = " ORDER BY cod_func";
             } else if (cbxOrdenar.getSelectedIndex() == 6) {
-                order = " ORDER BY renovacoes DESC";
+                order = " ORDER BY renovacoes";
+            }
+            
+            if (chbDesc.isSelected()) {
+                order += " DESC";
             }
 
             if (!opcoes.isEmpty()) {
@@ -483,6 +495,7 @@ public class IfrBuscaVideoEmprestimos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JComboBox<String> cbxOrdenar;
     private javax.swing.JComboBox<String> cbxSituacao;
+    private javax.swing.JCheckBox chbDesc;
     private javax.swing.JFormattedTextField ftfDataFinal;
     private javax.swing.JFormattedTextField ftfDataInicial;
     private javax.swing.JLabel jLabel1;

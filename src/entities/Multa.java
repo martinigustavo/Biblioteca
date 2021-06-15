@@ -18,6 +18,7 @@ public class Multa {
     private Emprestimo emprestimo;
 
     public Multa() {
+        pago = false;
     }
 
     public Multa(int id, Double valor, boolean pago, String data_pgto, Emprestimo emprestimo) {

@@ -16,6 +16,7 @@ import dao.UsuarioDAO;
 import entities.Emprestimo;
 import entities.EmprestimoExemplar;
 import entities.Exemplar;
+import entities.Multa;
 import entities.Perfil;
 import entities.Usuario;
 import java.awt.Color;
@@ -403,7 +404,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
         Frame parentFrame = (Frame) SwingUtilities.getAncestorOfClass(Window.class, this);
         DlgBuscaUsuario dlgBuscaUsuario = new DlgBuscaUsuario(parentFrame, true);
         dlgBuscaUsuario.setVisible(true);
-        
+
         try {
             apto = true;
 
@@ -424,11 +425,12 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                     apto = false;
                 }
             }
-            
+
             boolean pendente = new MultaDAO().consultar(cod_usuario);
-            
-            apto = pendente ? false : true;
-            
+
+//            apto = pendente ? false : true;
+            apto = !pendente && apto;
+
             lblUsuarioApto.setText(apto ? "Sim" : "Pendente");
             lblUsuarioApto.setForeground(apto ? Color.BLACK : Color.red);
         } catch (Exception e) {
@@ -503,10 +505,6 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                     }
                 }
 
-//                if (id != 0) {
-//                    // remover da tabela livro_autor
-//                    emprestimoExemplarDAO.excluir(id, cod_exemplar);
-//                }
                 atualizarDTM();
             } catch (Exception e) {
                 System.out.println("Erro ao remover exemplar de Empréstimo: " + e);
@@ -557,18 +555,16 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             }
 
             if (data_retirada.isEmpty() && !data_devolvido.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "A data devolução deve ser maior que a data de retirada!"
-                        + "\n"
-                        + "A data de retirada em branco será preenchida com a data atual.");
+                JOptionPane.showMessageDialog(null, "A data devolução deve ser maior que a data de retirada!");
                 return;
             }
-            
+
             Perfil perfil = perfilDAO.consultarId(usuario.getCod_perfil());
             int prazo = perfil.getPrazo();
             Date data_retiradaAsDate = Data.stringToDate(data_retirada);
             Date data_devolucaoAsDate = Data.somarDia(data_retiradaAsDate, prazo);
             String data_devolucao = Data.dateToString(data_devolucaoAsDate);
-            
+
             Emprestimo emprestimo = new Emprestimo();
             emprestimo.setCod_func(cod_funcionario);
             emprestimo.setCod_usuario(cod_usuario);
@@ -585,7 +581,19 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                 return;
             }
 
-            if (retorno == null) {
+            boolean atrasado = false;
+            if (datasValidas) {
+                long diferenca_datas = Data.compareDates(Data.stringToDate(data_retirada), Data.stringToDate(data_devolvido));
+                atrasado = diferenca_datas > prazo;
+
+                if (atrasado) {
+                    Multa multa = new Multa();
+                    multa.setEmprestimo(emprestimoDAO.consultarId(emprestimoDAO.returnId));
+                    retorno = new MultaDAO().salvar(multa);
+                }
+            }
+
+            if (retorno == null && !atrasado) {
                 int returnID = emprestimoDAO.returnId;
 
                 for (Exemplar exemplar : exemplares) {
@@ -600,10 +608,12 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Empréstimo criado com sucesso!");
 
                 limparCadastro();
-                
-                Map params = new HashMap();
-                params.put("pCodEmprestimo", emprestimoDAO.returnId);
-                new ReportsGenerator().gerarRelatorioRobusto("/reports/report_novo_emprestimo.jrxml", params);
+
+                if (!atrasado) {
+                    Map params = new HashMap();
+                    params.put("pCodEmprestimo", emprestimoDAO.returnId);
+                    new ReportsGenerator().gerarRelatorioRobusto("/reports/report_novo_emprestimo.jrxml", params);
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Problema ao criar empréstimo!");

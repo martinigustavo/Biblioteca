@@ -288,7 +288,7 @@ INSERT INTO usuario (nome, sobrenome, endereco, cpf, email, data_nasc, data_cada
 INSERT INTO emprestimo
 (data_retirada, data_devolucao, data_devolvido, renovacoes, devolvido, cod_usuario, cod_func) VALUES 
     ('10/10/2020', '10/17/2020', '10/17/2020', 0 ,true, 4, 1),
-    ('01/11/2020', '01/18/2020', '02/21/2021', 0 ,true, 3, 1),
+    ('01/11/2020', '01/18/2020', '02/21/2021', 0 ,true, 2, 1),
     ('03/15/2021', '03/29/2021', null, 0 ,false, 2, 1),
     ('12/22/2020', '01/12/2020', '01/23/2021', 0 ,true, 1, 1),
     ('10/10/2019', '10/17/2019', null, 0 ,false, 3, 1),
@@ -306,9 +306,12 @@ INSERT INTO emprestimo
 -- Insert multas
 -- -----------------------------------------------------
 INSERT INTO multa (valor, pago, data_pgto, cod_emprestimo) VALUES
-    (130, false, null, 3),
-    (12, false, null, 5),
-    (15, false, null, 6);
+    (101.75, true, '02/21/2021', 2),
+    (8.0, true, '01/23/2021', 4),
+    (0.0, false, null, 8),
+    (0.0, false, null, 11),
+    (37.75, true, '06/01/2019', 13),
+    (0.0, false, null, 14);
 
 -- -----------------------------------------------------
 -- Insert livros
@@ -333,7 +336,7 @@ INSERT INTO livro (isbn, titulo, ano, edicao, volume, exemplares, cod_tipolivro,
 -- Insert exemplares
 -- -----------------------------------------------------    
 INSERT INTO exemplar (cod_livro, cod_estado) VALUES
-    (1, 1), (1, 1), (1, 1), (1, 1), (1, 2),
+    (1, 1), (1, 1), (1, 2), (1, 1), (1, 2),
     (2, 2), (2, 1),
     (3, 1), (3, 1), (3, 2),
     (4, 1),

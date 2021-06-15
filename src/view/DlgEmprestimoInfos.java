@@ -8,9 +8,11 @@ package view;
 import dao.EmprestimoDAO;
 import dao.EmprestimoExemplarDAO;
 import dao.FuncionarioDAO;
+import dao.MultaDAO;
 import dao.UsuarioDAO;
 import entities.Emprestimo;
 import entities.Funcionario;
+import entities.Multa;
 import entities.Usuario;
 
 /**
@@ -41,15 +43,20 @@ public class DlgEmprestimoInfos extends javax.swing.JDialog {
                 ? "" : emprestimo.getData_devolucao();
         String devolvido = emprestimo.isDevolvido() ? "Devolvido" : "Pendente";
         
-        // TODO
-        // multa
-        
+        boolean pendente = new MultaDAO().consultar(usuario.getId());
+        if (pendente) {
+            Multa multa = new MultaDAO().consultarId(emprestimo.getId() + "");
+            lblMulta.setText("R$ " + multa.getValor());
+        } else {
+            lblMulta.setText("Sem multa");
+        }
 
         lblCodEmprestimo.setText(cod_emprestimo + "");
         lblUsuario.setText(nomeUsuario);
         lblFuncionario.setText(nomeFunc);
         lblDataRetirada.setText(emprestimo.getData_retirada());
         lblDataDevolucao.setText(emprestimo.getData_devolucao());
+        lblDataDevolvido.setText(emprestimo.getData_devolvido());
         lblRenovacoes.setText(emprestimo.getRenovacoes() + "");
         lblDevolvido.setText(devolvido);
 
@@ -85,6 +92,8 @@ public class DlgEmprestimoInfos extends javax.swing.JDialog {
         lblDevolvido = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lblMulta = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblDataDevolvido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -153,6 +162,10 @@ public class DlgEmprestimoInfos extends javax.swing.JDialog {
 
         lblMulta.setText(" ");
 
+        jLabel10.setText("Data devolvido:");
+
+        lblDataDevolvido.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,6 +180,7 @@ public class DlgEmprestimoInfos extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
@@ -178,7 +192,8 @@ public class DlgEmprestimoInfos extends javax.swing.JDialog {
                                     .addComponent(lblCodEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblDataRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblDataDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblDataDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDataDevolvido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel6)
@@ -222,7 +237,11 @@ public class DlgEmprestimoInfos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(lblDataDevolucao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(lblDataDevolvido))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,6 +302,7 @@ public class DlgEmprestimoInfos extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -294,6 +314,7 @@ public class DlgEmprestimoInfos extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCodEmprestimo;
     private javax.swing.JLabel lblDataDevolucao;
+    private javax.swing.JLabel lblDataDevolvido;
     private javax.swing.JLabel lblDataRetirada;
     private javax.swing.JLabel lblDevolvido;
     private javax.swing.JLabel lblFuncionario;

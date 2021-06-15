@@ -323,12 +323,13 @@ public class IfrBuscaVideoMultas extends javax.swing.JInternalFrame {
         cbxSituacao.setSelectedIndex(0);
         cbxOrdenar.setSelectedIndex(0);
         lblTotal.setText("0");
+        lblValorTotal.setText("R$ 0.00");
 
         cod_usuario = 0;
         cod_emprestimo = 0;
         cod_multa = 0;
 
-        new MultaDAO().popularTabelaBusca(tblMultas, "WHERE cod_usuario = 0", " ORDER BY cod_usuario");
+        new MultaDAO().popularTabelaBusca(tblMultas, "WHERE u.cod_usuario = 0", " ORDER BY u.cod_usuario");
     }
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -436,8 +437,6 @@ public class IfrBuscaVideoMultas extends javax.swing.JInternalFrame {
             new MultaDAO().popularTabelaBusca(tblMultas, sql, order);
 
             double valorTotal = 0;
-            
-            System.out.println("NUMERO DE ROWS: " + tblMultas.getRowCount());
 
             for (int i = 0; i < tblMultas.getRowCount(); i++) {
                 String idString = String.valueOf(tblMultas.getValueAt(i, 4));
