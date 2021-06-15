@@ -205,6 +205,129 @@ public class MultaDAO implements IDAOT<Multa> {
         column.setMinWidth(50);
     }
 
+    public void popularTabelaBusca(JTable tabela, String sql, String order) {
+        // dados da tabela
+        Object[][] dadosTabela = null;
+
+        // cabecalho da tabela
+        Object[] cabecalho = new Object[8];
+        cabecalho[0] = "Usuário";
+        cabecalho[1] = "Nome";
+        cabecalho[2] = "Sobrenome";
+        cabecalho[3] = "Multa";
+        cabecalho[4] = "Valor";
+        cabecalho[5] = "Pago";
+        cabecalho[6] = "Data Pgto";
+        cabecalho[7] = "Empréstimo";
+
+        ResultSet resultadoQ;
+
+        // cria matriz de acordo com nº de registros da tabela
+        try {
+            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                    + "SELECT count(m.*) "
+                    + "FROM multa m "
+                    + "join emprestimo e on m.cod_emprestimo = e.cod_emprestimo "
+                    + "join usuario u on e.cod_usuario = u.cod_usuario "
+                    + sql
+                    + "");
+
+            resultadoQ.next();
+
+            // instancia da matrzi de acordo com o nº de linhas do ResultSet
+            dadosTabela = new Object[resultadoQ.getInt(1)][8];
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar emprestimos: " + e);
+        }
+
+        int lin = 0;
+
+        order = order.equals("") ? "data_retirada" : order;
+
+        // efetua consulta na tabela
+        try {
+            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                    + "SELECT u.cod_usuario, u.nome, u.sobrenome, m.* "
+                    + "FROM multa m "
+                    + "join emprestimo e on m.cod_emprestimo = e.cod_emprestimo "
+                    + "join usuario u on e.cod_usuario = u.cod_usuario "
+                    + sql
+                    + order);
+
+            while (resultadoQ.next()) {
+                dadosTabela[lin][0] = resultadoQ.getInt("cod_usuario");
+                dadosTabela[lin][1] = resultadoQ.getString("nome");
+                dadosTabela[lin][2] = resultadoQ.getString("sobrenome");
+                dadosTabela[lin][3] = resultadoQ.getInt("cod_multa");
+                dadosTabela[lin][4] = resultadoQ.getDouble("valor");
+                String isPago = resultadoQ.getBoolean("pago") == true ? "Pago" : "Pendente";
+                dadosTabela[lin][5] = isPago;
+                dadosTabela[lin][6] = resultadoQ.getDate("data_pgto");
+                dadosTabela[lin][7] = resultadoQ.getInt("cod_emprestimo");
+
+                lin++;
+            }
+        } catch (Exception e) {
+            System.out.println("problemas para popular tabela...");
+            System.out.println(e);
+        }
+
+        // configuracoes adicionais no componente tabela
+        tabela.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
+            @Override
+            // quando retorno for FALSE, a tabela nao é editavel
+            public boolean isCellEditable(int row, int column) {
+                return false;
+                /*  
+                 if (column == 3) {  // apenas a coluna 3 sera editavel
+                 return true;
+                 } else {
+                 return false;
+                 }
+                 */
+            }
+
+            // alteracao no metodo que determina a coluna em que o objeto ImageIcon devera aparecer
+            @Override
+            public Class getColumnClass(int column) {
+
+                if (column == 2) {
+                    //return ImageIcon.class;
+                    //return Boolean.class;
+                }
+                return Object.class;
+            }
+        });
+
+        // permite seleção de apenas uma linha da tabela
+        tabela.setSelectionMode(0);
+
+        // redimensiona as colunas de uma tabela
+        TableColumn column = null;
+        for (int i = 0; i < tabela.getColumnCount(); i++) {
+            column = tabela.getColumnModel().getColumn(i);
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+            column.setCellRenderer(centerRenderer);
+        }
+
+        column = tabela.getColumnModel().getColumn(0);
+        column.setPreferredWidth(70);
+        column.setMaxWidth(70);
+        column.setMinWidth(70);
+        
+        column = tabela.getColumnModel().getColumn(3);
+        column.setPreferredWidth(70);
+        column.setMaxWidth(70);
+        column.setMinWidth(70);
+        
+        column = tabela.getColumnModel().getColumn(7);
+        column.setPreferredWidth(100);
+        column.setMaxWidth(100);
+        column.setMinWidth(100);
+    }
+
     @Override
     public String excluir(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

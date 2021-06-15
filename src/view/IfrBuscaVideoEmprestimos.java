@@ -23,7 +23,7 @@ import utils.Validacao;
  *
  * @author Gustavo Martini
  */
-public class IfrBuscaVideo extends javax.swing.JInternalFrame {
+public class IfrBuscaVideoEmprestimos extends javax.swing.JInternalFrame {
 
     int cod_usuario = 0;
     int cod_funcionario = 0;
@@ -32,7 +32,7 @@ public class IfrBuscaVideo extends javax.swing.JInternalFrame {
     /**
      * Creates new form IfrBuscaVideo
      */
-    public IfrBuscaVideo() {
+    public IfrBuscaVideoEmprestimos() {
         initComponents();
         setTitle("Consultar Empréstimos");
         setClosable(true);
@@ -246,8 +246,8 @@ public class IfrBuscaVideo extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(cbxSituacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, 160, Short.MAX_VALUE)
                                 .addComponent(cbxOrdenar, javax.swing.GroupLayout.Alignment.TRAILING, 0, 160, Short.MAX_VALUE)
-                                .addComponent(btnLimpar, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txfCodEmprestimo, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                .addComponent(txfCodEmprestimo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnLimpar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

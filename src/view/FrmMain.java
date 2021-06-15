@@ -81,6 +81,7 @@ public class FrmMain extends javax.swing.JFrame {
         mniEmprestimoNovo = new javax.swing.JMenuItem();
         mniEmprestimoDevolucao = new javax.swing.JMenuItem();
         mniConsultarEmprestimos = new javax.swing.JMenuItem();
+        mniConsultarMultas = new javax.swing.JMenuItem();
         mnuRelatorios = new javax.swing.JMenu();
         mniRelatorioLivrosCadastrados = new javax.swing.JMenuItem();
         mniRelatorioUsuariosCadastrados = new javax.swing.JMenuItem();
@@ -216,6 +217,14 @@ public class FrmMain extends javax.swing.JFrame {
         });
         mnuEmprestimos.add(mniConsultarEmprestimos);
 
+        mniConsultarMultas.setText("Consultar Multas");
+        mniConsultarMultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniConsultarMultasActionPerformed(evt);
+            }
+        });
+        mnuEmprestimos.add(mniConsultarMultas);
+
         mnbMain.add(mnuEmprestimos);
 
         mnuRelatorios.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/pie-chart48.png")); // NOI18N
@@ -335,7 +344,7 @@ public class FrmMain extends javax.swing.JFrame {
         }    }//GEN-LAST:event_mniEmprestimoDevolucaoActionPerformed
 
     private void mniConsultarEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniConsultarEmprestimosActionPerformed
-        IfrBuscaVideo ifrBuscaVideo = new IfrBuscaVideo();
+        IfrBuscaVideoEmprestimos ifrBuscaVideo = new IfrBuscaVideoEmprestimos();
         if (!contemFrame(ifrBuscaVideo)) {
             dkpMain.add(ifrBuscaVideo);
             ifrBuscaVideo.setVisible(true);
@@ -357,6 +366,14 @@ public class FrmMain extends javax.swing.JFrame {
             ifrRelatorioLivro.setVisible(true);
         }
     }//GEN-LAST:event_mniRelatorioLivrosActionPerformed
+
+    private void mniConsultarMultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniConsultarMultasActionPerformed
+        IfrBuscaVideoMultas ifrBuscaVideo = new IfrBuscaVideoMultas();
+        if (!contemFrame(ifrBuscaVideo)) {
+            dkpMain.add(ifrBuscaVideo);
+            ifrBuscaVideo.setVisible(true);
+        }
+    }//GEN-LAST:event_mniConsultarMultasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,6 +416,7 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar mnbMain;
     private javax.swing.JMenuItem mniAutor;
     private javax.swing.JMenuItem mniConsultarEmprestimos;
+    private javax.swing.JMenuItem mniConsultarMultas;
     private javax.swing.JMenuItem mniEditora;
     private javax.swing.JMenuItem mniEmprestimoDevolucao;
     private javax.swing.JMenuItem mniEmprestimoNovo;

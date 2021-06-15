@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import reports.ReportsGenerator;
-import utils.Data;
 
 /**
  *
@@ -129,9 +128,9 @@ public class IfrRelatorioLivro extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnGerarRelatorio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnLimpar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLimpar)
+                    .addComponent(btnCancelar))
                 .addGap(30, 30, 30))
         );
 
