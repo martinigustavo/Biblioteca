@@ -1,6 +1,6 @@
 # BiblioSystem
 
-# Sobre o projeto
+## Sobre o projeto
 
 BiblioSystem é uma aplicação desktop construída durante a disciplina de Programação de Aplicações, do curso de Eng. de Software da UNIVATES.
 
@@ -9,18 +9,18 @@ Esta aplicação consiste em gerenciar uma biblioteca através do cadastro de us
 ## Modelo conceitual
 ![Modelo Conceitual](modeloER.png)
 
-# Tecnologias utilizadas
+## Tecnologias utilizadas
 - Java 11
 - PostgreSQL
 - Docker
 - JasperReports
 
-# Softwares utilizados
+## Softwares utilizados
 - NetBeans
 - DBeaver
 - MySQL Workbench
 
-# Autor
+## Autor
 
 [Gustavo Martini](https://github.com/martinigustavo)
 
