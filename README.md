@@ -20,11 +20,6 @@ Esta aplicação consiste em gerenciar uma biblioteca através do cadastro de us
 - DBeaver
 - MySQL Workbench
 
-## Implantação em produção
-- Back end: Heroku
-- Front end web: Netlify
-- Banco de dados: Postgresql
-
 # Autor
 
 [Gustavo Martini](https://github.com/martinigustavo)
