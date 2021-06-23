@@ -1,5 +1,7 @@
 # Compiled class file
 *.class
+*.form
+*.jrxml
 
 # Log file
 *.log
