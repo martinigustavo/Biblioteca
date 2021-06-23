@@ -343,7 +343,6 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
                 txfMultaPendente.setText("Não");
                 txfMultaPendente.setForeground(Color.BLACK);
             }
-            
 
             if (emprestimos.size() > 0) {
                 for (Emprestimo emp : emprestimos) {
@@ -457,20 +456,17 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
 
             String retorno = "";
 
-            // se estiver atrasado, abrir janela para pagar multa
-            if (atrasado) {
-                Multa multa = new Multa();
-                multa.setEmprestimo(emprestimo);
-                retorno = multaDAO.salvar(multa);
-            }
-
             // atualizar emprestimo_exemplar
-            ArrayList<Exemplar> exemplares = new ArrayList<>();
-            exemplares = new EmprestimoExemplarDAO().consultar(cod_emprestimoPendente + "");
+            ArrayList<Exemplar> exemplares = 
+                    new EmprestimoExemplarDAO().consultar(cod_emprestimoPendente + "");
 
-            for (Exemplar ex : exemplares) {
-                ex.setCod_estado(1);
-                retorno = new ExemplarDAO().atualizar(ex);
+            if (exemplares.size() != 0) {
+                for (Exemplar ex : exemplares) {
+                    ex.setCod_estado(1);
+                    retorno = new ExemplarDAO().atualizar(ex);
+                }
+            } else {
+                retorno = null;
             }
 
             // realizar a devolucao do emprestimo

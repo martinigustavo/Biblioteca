@@ -582,7 +582,7 @@ public class IfrEmprestimoNovo extends javax.swing.JInternalFrame {
             }
 
             boolean atrasado = false;
-            if (datasValidas) {
+            if (!data_devolvido.isEmpty() && !data_retirada.isEmpty()) {
                 long diferenca_datas = Data.compareDates(Data.stringToDate(data_retirada), Data.stringToDate(data_devolvido));
                 atrasado = diferenca_datas > prazo;
 

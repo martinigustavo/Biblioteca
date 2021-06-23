@@ -196,7 +196,7 @@ public class EmprestimoExemplarDAO {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
-            String sql = "SELECT * FROM emprestimo_exemplar WHERE cod_emprestimo = '" + cod_emprestimo + "'";
+            String sql = "SELECT * FROM emprestimo_exemplar WHERE cod_emprestimo = " + cod_emprestimo + "";
 
             System.out.println("SQL: " + sql);
 
@@ -206,7 +206,7 @@ public class EmprestimoExemplarDAO {
                 exemplar = new ExemplarDAO().consultarId(retorno.getInt("cod_exemplar"));
                 exemplares.add(exemplar);
             }
-
+            
         } catch (Exception e) {
             System.out.println("Erro ao consultar todos em emprestimo_exemplar: " + e);
         }
