@@ -297,6 +297,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
         txfAtrasado.setText("");
         txfCod.setText("");
         txfDataDevolucao.setText("");
+        txfMultaPendente.setText("");
         emprestimoDAO.popularTabela(tblEmprestimos, 0, "", "");
         cod_usuario = 0;
 

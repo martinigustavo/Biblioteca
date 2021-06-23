@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_usuarios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1ea38013-7152-4663-ae7d-463fc63d2c65">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BD_Biblioteca"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="pCodEmprestimo" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select l.*, e.*, p.*, e2.cod_exemplar 
+from emprestimo e 
+left join emprestimo_exemplar ee on e.cod_emprestimo = ee.cod_emprestimo
+left join exemplar e2 on ee.cod_exemplar = e2.cod_exemplar 
+left join livro l on e2.cod_livro = l.cod_livro 
+left join usuario u on u.cod_usuario = e.cod_usuario 
+left join perfil p on p.cod_perfil = u.cod_perfil
+where e.cod_emprestimo = $P{pCodEmprestimo}]]>
+	</queryString>
+	<field name="cod_livro" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cod_livro"/>
+		<property name="com.jaspersoft.studio.field.label" value="cod_livro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+	</field>
+	<field name="isbn" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="isbn"/>
+		<property name="com.jaspersoft.studio.field.label" value="isbn"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="titulo"/>
+		<property name="com.jaspersoft.studio.field.label" value="titulo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+	</field>
+	<field name="ano" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ano"/>
+		<property name="com.jaspersoft.studio.field.label" value="ano"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+	</field>
+	<field name="edicao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="edicao"/>
+		<property name="com.jaspersoft.studio.field.label" value="edicao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+	</field>
+	<field name="volume" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="volume"/>
+		<property name="com.jaspersoft.studio.field.label" value="volume"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+	</field>
+	<field name="exemplares" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="exemplares"/>
+		<property name="com.jaspersoft.studio.field.label" value="exemplares"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+	</field>
+	<field name="cod_tipolivro" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cod_tipolivro"/>
+		<property name="com.jaspersoft.studio.field.label" value="cod_tipolivro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+	</field>
+	<field name="cod_editora" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cod_editora"/>
+		<property name="com.jaspersoft.studio.field.label" value="cod_editora"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="livro"/>
+	</field>
+	<field name="cod_emprestimo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cod_emprestimo"/>
+		<property name="com.jaspersoft.studio.field.label" value="cod_emprestimo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+	</field>
+	<field name="data_retirada" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="data_retirada"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_retirada"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+	</field>
+	<field name="data_devolucao" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="data_devolucao"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_devolucao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+	</field>
+	<field name="renovacoes" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="renovacoes"/>
+		<property name="com.jaspersoft.studio.field.label" value="renovacoes"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+	</field>
+	<field name="devolvido" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="devolvido"/>
+		<property name="com.jaspersoft.studio.field.label" value="devolvido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+	</field>
+	<field name="cod_usuario" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cod_usuario"/>
+		<property name="com.jaspersoft.studio.field.label" value="cod_usuario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+	</field>
+	<field name="cod_func" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cod_func"/>
+		<property name="com.jaspersoft.studio.field.label" value="cod_func"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+	</field>
+	<field name="cod_perfil" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cod_perfil"/>
+		<property name="com.jaspersoft.studio.field.label" value="cod_perfil"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil"/>
+	</field>
+	<field name="perfil" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="perfil"/>
+		<property name="com.jaspersoft.studio.field.label" value="perfil"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil"/>
+	</field>
+	<field name="prazo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="prazo"/>
+		<property name="com.jaspersoft.studio.field.label" value="prazo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil"/>
+	</field>
+	<field name="limite" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="limite"/>
+		<property name="com.jaspersoft.studio.field.label" value="limite"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil"/>
+	</field>
+	<field name="qtde_renovacoes" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="qtde_renovacoes"/>
+		<property name="com.jaspersoft.studio.field.label" value="qtde_renovacoes"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil"/>
+	</field>
+	<field name="situacao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="situacao"/>
+		<property name="com.jaspersoft.studio.field.label" value="situacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil"/>
+	</field>
+	<field name="cod_exemplar" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cod_exemplar"/>
+		<property name="com.jaspersoft.studio.field.label" value="cod_exemplar"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="exemplar"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="153" y="17" width="248" height="26" uuid="d3f9726c-d79e-44df-83c3-838b68cfccb2"/>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECIBO DE EMPRÉSTIMO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="71" splitType="Stretch">
+			<textField>
+				<reportElement x="110" y="23" width="334" height="24" uuid="5cfd5bbf-3e57-4bea-8b47-8a2112f94817"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["BiblioSystem™: Library Management Software"]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="10" y="11" width="49" height="49" uuid="f26b047f-224e-49ed-8682-a6044d91d6b1"/>
+				<imageExpression><![CDATA["https://image.flaticon.com/icons/png/512/4272/4272834.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="154" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="0" width="50" height="16" uuid="865ee592-2a01-4e26-8be9-2d75862e393e"/>
+				<textFieldExpression><![CDATA[$F{cod_emprestimo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="16" width="100" height="16" uuid="1c282daf-6439-4f44-b797-c329c3a48887">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b796a28-b84d-4b40-b143-b7b174a2514c"/>
+				</reportElement>
+				<text><![CDATA[Data do empréstimo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="16" width="100" height="16" uuid="6a130107-f638-4ffb-aafa-d6d265f573b2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b796a28-b84d-4b40-b143-b7b174a2514c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{data_retirada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="104" width="70" height="20" uuid="81dca03e-ed98-4a50-b079-c9dcba4cc9ff"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Exemplares:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="16" uuid="d66f16ea-316c-4be7-a1c7-0911b59212a9"/>
+				<text><![CDATA[Cód.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="32" width="100" height="18" uuid="ae1e72d7-bf89-49ac-92ff-e0a94406f06c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b796a28-b84d-4b40-b143-b7b174a2514c"/>
+				</reportElement>
+				<text><![CDATA[Prazo p/ devolução:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="124" width="185" height="30" backcolor="#64D1A0" uuid="5a766d5d-2f28-4eca-8502-a4b2c1a2ba85">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a102cd37-2662-4767-9da7-a8c32e05a5f8"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ISBN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="185" y="124" width="185" height="30" backcolor="#64D1A0" uuid="3eddc80c-075f-4220-8850-6eb6c7945a6b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="748f89ea-2d07-4f48-bc0b-324493476217"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Título]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="369" y="124" width="185" height="30" backcolor="#64D1A0" uuid="e542351b-b739-4419-b7e4-52ef7d28462e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="52400563-c38f-4451-9dcb-f9943cf20d57"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cód. Exemplar]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="32" width="100" height="18" uuid="f0c18f8d-3463-415a-80fc-bf1f6e3161a9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fc41ceb3-ba07-4825-b129-cd6c795826d2"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{prazo} + " dias"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="50" width="100" height="16" uuid="b742a593-6ccf-4868-9453-7bf96c54d782"/>
+				<text><![CDATA[Qtde de renovações:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="50" width="100" height="16" uuid="481d590b-1800-488b-8f30-d245383b1b81">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b796a28-b84d-4b40-b143-b7b174a2514c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{qtde_renovacoes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="66" width="100" height="16" uuid="e43d75da-a94a-4cb9-96ca-a7ba54d53bdc"/>
+				<text><![CDATA[Cód. usuário:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="66" width="100" height="16" uuid="c44fcd1a-28fa-4048-b4fa-878edcaa34a5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b796a28-b84d-4b40-b143-b7b174a2514c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cod_usuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="82" width="100" height="16" uuid="3983ccb4-5345-451c-96fe-b7466dfa5f10"/>
+				<text><![CDATA[Cód. funcionário:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="82" width="100" height="16" uuid="3cdc5ed6-fd66-4d2b-858a-499e7be12a4c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5b796a28-b84d-4b40-b143-b7b174a2514c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cod_func}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="30" uuid="8bd9c467-7ccc-4de2-aef0-c10c0b72608f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a102cd37-2662-4767-9da7-a8c32e05a5f8"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{isbn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="30" uuid="96fbae57-bb8e-4300-9ad8-023eb03a7554">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="748f89ea-2d07-4f48-bc0b-324493476217"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="30" uuid="241c800d-5b37-422c-944c-c80b57f5e97e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="52400563-c38f-4451-9dcb-f9943cf20d57"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cod_exemplar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="260" y="0" width="40" height="30" uuid="5ff0d513-7d7c-4cbf-95ec-f43f44cc6d08"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
