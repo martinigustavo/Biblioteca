@@ -5,7 +5,7 @@ BiblioSystem é uma aplicação desktop construída durante a disciplina de Prog
 
 Esta aplicação consiste em gerenciar uma biblioteca através do cadastro de usuários (leitores e funcionários), livros, autores, editoras, etc. Além disso, a aplicação serve para o cadastro e controle de empréstimos, renovações, devoluções e multas de empréstimos atrasados.
 
-## Modelo conceitual
+## Modelo do Banco de Dados
 ![Modelo Conceitual](.github/modeloER.png)
 
 ## Tela de Login
