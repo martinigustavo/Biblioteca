@@ -93,7 +93,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         txfMultaPendente = new javax.swing.JTextField();
 
-        btnBuscarUsuario.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png")); // NOI18N
+        btnBuscarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/loupe.png"))); // NOI18N
         btnBuscarUsuario.setText("Buscar Usuário");
         btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +127,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Empréstimos:");
 
-        btnMultas.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/money.png")); // NOI18N
+        btnMultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/money.png"))); // NOI18N
         btnMultas.setText("Multas");
         btnMultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +135,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             }
         });
 
-        btnEmprestimoInfos.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/info.png")); // NOI18N
+        btnEmprestimoInfos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/info.png"))); // NOI18N
         btnEmprestimoInfos.setText("Informações do empréstimo");
         btnEmprestimoInfos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +146,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jLabel3.setText("Empréstimo pendente");
 
-        btnDevolver.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/return.png")); // NOI18N
+        btnDevolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/return.png"))); // NOI18N
         btnDevolver.setText("Devolver");
         btnDevolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +154,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             }
         });
 
-        btnRenovar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/renew.png")); // NOI18N
+        btnRenovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/renew.png"))); // NOI18N
         btnRenovar.setText("Renovar");
         btnRenovar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +162,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/close.png")); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +172,7 @@ public class IfrEmprestimoDevolucao extends javax.swing.JInternalFrame {
 
         lblUsuarioNome.setText(" ");
 
-        btnLimpar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/clean.png")); // NOI18N
+        btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/clean.png"))); // NOI18N
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

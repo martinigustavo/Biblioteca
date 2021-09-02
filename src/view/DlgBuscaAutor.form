@@ -40,7 +40,7 @@
                       <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="60" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -120,7 +120,7 @@
     <Component class="javax.swing.JButton" name="btnAdd">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/plus.png"/>
+          <Image iconType="3" name="/icons/plus.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Adicionar"/>
       </Properties>
@@ -141,7 +141,7 @@
     <Component class="javax.swing.JButton" name="btnBuscar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png"/>
+          <Image iconType="3" name="/icons/loupe.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>

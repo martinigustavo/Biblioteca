@@ -394,7 +394,7 @@
             <Component class="javax.swing.JButton" name="btnAddAutor">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/plus.png"/>
+                  <Image iconType="3" name="/icons/plus.png"/>
                 </Property>
               </Properties>
               <Events>
@@ -441,7 +441,7 @@
             <Component class="javax.swing.JButton" name="btnAddGenero">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/plus.png"/>
+                  <Image iconType="3" name="/icons/plus.png"/>
                 </Property>
               </Properties>
               <Events>
@@ -555,7 +555,7 @@
             <Component class="javax.swing.JButton" name="btnRemoverGenero">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/delete.png"/>
+                  <Image iconType="3" name="/icons/delete.png"/>
                 </Property>
               </Properties>
               <Events>
@@ -565,7 +565,7 @@
             <Component class="javax.swing.JButton" name="btnRemoverAutor">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/delete.png"/>
+                  <Image iconType="3" name="/icons/delete.png"/>
                 </Property>
               </Properties>
               <Events>
@@ -574,9 +574,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnProcurarEditora">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png"/>
-                </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Selecionar editora"/>
               </Properties>
               <Events>
@@ -633,7 +630,7 @@
             <Component class="javax.swing.JButton" name="btnBuscar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png"/>
+                  <Image iconType="3" name="/icons/loupe.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
@@ -742,7 +739,7 @@
     <Component class="javax.swing.JButton" name="btnExcluir">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/delete.png"/>
+          <Image iconType="3" name="/icons/delete.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
@@ -753,7 +750,7 @@
     <Component class="javax.swing.JButton" name="btnEditar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/edit.png"/>
+          <Image iconType="3" name="/icons/edit.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
@@ -764,7 +761,7 @@
     <Component class="javax.swing.JButton" name="btnGerenciarExemplares">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/manage.png"/>
+          <Image iconType="3" name="/icons/manage.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Gerenciar exemplares"/>
       </Properties>
@@ -775,7 +772,7 @@
     <Component class="javax.swing.JButton" name="btnSalvar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/floppy-disk.png"/>
+          <Image iconType="3" name="/icons/floppy-disk.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
@@ -786,7 +783,7 @@
     <Component class="javax.swing.JButton" name="btnNovo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/new.png"/>
+          <Image iconType="3" name="/icons/new.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Novo"/>
       </Properties>

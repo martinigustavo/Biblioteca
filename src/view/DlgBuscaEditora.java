@@ -58,7 +58,7 @@ public class DlgBuscaEditora extends javax.swing.JDialog {
         tblEditora.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblEditora);
 
-        btnSelecionar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/select.png")); // NOI18N
+        btnSelecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/select.png"))); // NOI18N
         btnSelecionar.setText("Selecionar");
         btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +70,7 @@ public class DlgBuscaEditora extends javax.swing.JDialog {
 
         jLabel3.setText("e aperte o botão \"Selecionar\".");
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png")); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/loupe.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

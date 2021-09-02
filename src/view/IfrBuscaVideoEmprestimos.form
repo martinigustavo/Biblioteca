@@ -262,7 +262,7 @@
     <Component class="javax.swing.JButton" name="btnBuscar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png"/>
+          <Image iconType="3" name="/icons/loupe.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
@@ -273,7 +273,7 @@
     <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/clean.png"/>
+          <Image iconType="3" name="/icons/clean.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Limpar campos"/>
       </Properties>
@@ -362,7 +362,7 @@
     <Component class="javax.swing.JButton" name="btnEmprestimoInfos">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/info.png"/>
+          <Image iconType="3" name="/icons/info.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es do empr&#xe9;stimo"/>
       </Properties>
@@ -387,21 +387,11 @@
     <Component class="javax.swing.JTextField" name="txfUsuario">
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscarFunc">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarFuncActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscarUsuario">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarUsuarioActionPerformed"/>
       </Events>

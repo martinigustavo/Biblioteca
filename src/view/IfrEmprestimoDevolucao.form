@@ -130,7 +130,7 @@
     <Component class="javax.swing.JButton" name="btnBuscarUsuario">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/loupe.png"/>
+          <Image iconType="3" name="/icons/loupe.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Buscar Usu&#xe1;rio"/>
       </Properties>
@@ -212,7 +212,7 @@
     <Component class="javax.swing.JButton" name="btnMultas">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/money.png"/>
+          <Image iconType="3" name="/icons/money.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Multas"/>
       </Properties>
@@ -223,7 +223,7 @@
     <Component class="javax.swing.JButton" name="btnEmprestimoInfos">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/info.png"/>
+          <Image iconType="3" name="/icons/info.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es do empr&#xe9;stimo"/>
       </Properties>
@@ -242,7 +242,7 @@
     <Component class="javax.swing.JButton" name="btnDevolver">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/return.png"/>
+          <Image iconType="3" name="/icons/return.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Devolver"/>
       </Properties>
@@ -253,7 +253,7 @@
     <Component class="javax.swing.JButton" name="btnRenovar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/renew.png"/>
+          <Image iconType="3" name="/icons/renew.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Renovar"/>
       </Properties>
@@ -264,7 +264,7 @@
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/close.png"/>
+          <Image iconType="3" name="/icons/close.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
@@ -284,7 +284,7 @@
     <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/gustavo/NetBeansProjects/Biblioteca/icons/clean.png"/>
+          <Image iconType="3" name="/icons/clean.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Limpar"/>
       </Properties>

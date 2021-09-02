@@ -113,15 +113,15 @@ public class FrmMain extends javax.swing.JFrame {
         dkpMainLayout.setVerticalGroup(
             dkpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dkpMainLayout.createSequentialGroup()
-                .addContainerGap(914, Short.MAX_VALUE)
+                .addContainerGap(886, Short.MAX_VALUE)
                 .addComponent(lblFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        mnuCadastros.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/add48.png")); // NOI18N
+        mnuCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add48.png"))); // NOI18N
         mnuCadastros.setText("Cadastros");
 
-        mnuLivros.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/books48.png")); // NOI18N
+        mnuLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/books48.png"))); // NOI18N
         mnuLivros.setText("Livros");
         mnuLivros.setToolTipText("Cadastro e consulta de livros");
 
@@ -167,7 +167,7 @@ public class FrmMain extends javax.swing.JFrame {
 
         mnuCadastros.add(mnuLivros);
 
-        mnuUsuarios.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/user48.png")); // NOI18N
+        mnuUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user48.png"))); // NOI18N
         mnuUsuarios.setText("Usuários");
 
         mniLeitor.setText("Leitor");
@@ -190,7 +190,7 @@ public class FrmMain extends javax.swing.JFrame {
 
         mnbMain.add(mnuCadastros);
 
-        mnuEmprestimos.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/book_exchange48.png")); // NOI18N
+        mnuEmprestimos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book_exchange48.png"))); // NOI18N
         mnuEmprestimos.setText("Empréstimos");
 
         mniEmprestimoNovo.setText("Novo Empréstimo");
@@ -227,7 +227,7 @@ public class FrmMain extends javax.swing.JFrame {
 
         mnbMain.add(mnuEmprestimos);
 
-        mnuRelatorios.setIcon(new javax.swing.ImageIcon("/home/gustavo/NetBeansProjects/Biblioteca/icons/pie-chart48.png")); // NOI18N
+        mnuRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pie-chart48.png"))); // NOI18N
         mnuRelatorios.setText("Relatórios");
 
         mniRelatorioLivrosCadastrados.setText("Todos livros cadastrados");
@@ -266,7 +266,7 @@ public class FrmMain extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dkpMain, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
+            .addComponent(dkpMain, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
         );
 
         pack();
