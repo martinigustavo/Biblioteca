@@ -5,6 +5,7 @@
  */
 package program;
 
+import utils.VisualConfig;
 import view.FrmLogin;
 
 /**
@@ -14,6 +15,7 @@ import view.FrmLogin;
 public class BibliotecaRunner {
     
     public static void appRunner() {
+        VisualConfig.createLookAndFeel();
         new FrmLogin().setVisible(true);
     }
 }

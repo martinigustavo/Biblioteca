@@ -5,11 +5,8 @@
  */
 package view;
 
-import com.formdev.flatlaf.FlatLightLaf;
 import dao.FuncionarioDAO;
-import javax.swing.UIManager;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-import utils.VisualConfig;
 
 /**
  *
@@ -21,9 +18,6 @@ public class FrmLogin extends javax.swing.JFrame {
      * Creates new form frmLogin
      */
     public FrmLogin() {
-        
-        VisualConfig.createLookAndFeel();
-
         initComponents();
         setTitle("BiblioSystem™: Library Management Software - LOGIN");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
