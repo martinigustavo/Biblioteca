@@ -1,4 +1,4 @@
-# BiblioSystem <img src='icons/knowledge.png' width='75' >
+# BiblioSystem <img src='src/icons/knowledge.png' width='75' >
 ## Sobre o projeto
 
 BiblioSystem é uma aplicação desktop construída durante a disciplina de Programação de Aplicações, do curso de Eng. de Software da UNIVATES.
